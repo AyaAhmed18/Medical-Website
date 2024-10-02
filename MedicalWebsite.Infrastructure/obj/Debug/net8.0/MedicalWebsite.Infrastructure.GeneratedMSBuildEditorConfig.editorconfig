@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MedicalWebsite.Infrastructure
-build_property.ProjectDir = E:\Projects\New folder\Medical-Website\MedicalWebsite.Infrastructure\
+build_property.ProjectDir = E:\Projects\Medical Website\Medical-Website\MedicalWebsite.Infrastructure\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

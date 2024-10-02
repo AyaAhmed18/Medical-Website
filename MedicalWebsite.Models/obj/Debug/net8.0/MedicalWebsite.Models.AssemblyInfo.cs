@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MedicalWebsite.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+047d40b8e43f34999f0811786add338daa807a5e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23aa1101eeb4ebb796c3b63a47533904a4713f00")]
 [assembly: System.Reflection.AssemblyProductAttribute("MedicalWebsite.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MedicalWebsite.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

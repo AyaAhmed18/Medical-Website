@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projects\\New folder\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj": {}
+    "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj": {}
   },
   "projects": {
-    "E:\\Projects\\New folder\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj": {
+    "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\New folder\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
+        "projectUniqueName": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
         "projectName": "MedicalWebsite.DTOS",
-        "projectPath": "E:\\Projects\\New folder\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
+        "projectPath": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
         "packagesPath": "C:\\Users\\GAMA\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\New folder\\Medical-Website\\MedicalWebsite.DTOS\\obj\\",
+        "outputPath": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.DTOS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\GAMA\\AppData\\Roaming\\NuGet\\NuGet.Config",

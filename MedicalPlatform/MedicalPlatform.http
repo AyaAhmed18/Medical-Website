@@ -1,0 +1,6 @@
+@MedicalPlatform_HostAddress = http://localhost:5029
+
+GET {{MedicalPlatform_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

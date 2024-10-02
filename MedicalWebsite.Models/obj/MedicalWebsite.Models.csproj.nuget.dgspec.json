@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projects\\New folder\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {}
+    "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {}
   },
   "projects": {
-    "E:\\Projects\\New folder\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {
+    "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\New folder\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
+        "projectUniqueName": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
         "projectName": "MedicalWebsite.Models",
-        "projectPath": "E:\\Projects\\New folder\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
+        "projectPath": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
         "packagesPath": "C:\\Users\\GAMA\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\New folder\\Medical-Website\\MedicalWebsite.Models\\obj\\",
+        "outputPath": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\GAMA\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,6 +45,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

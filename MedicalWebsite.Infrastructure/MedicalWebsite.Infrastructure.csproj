@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MedicalWebsite.Applicationn\MedicalWebsite.Applicationn.csproj" />
+    <ProjectReference Include="..\MedicalWebsite.Context\MedicalWebsite.Context.csproj" />
+    <ProjectReference Include="..\MedicalWebsite.Models\MedicalWebsite.Models.csproj" />
+  </ItemGroup>
+
 </Project>
