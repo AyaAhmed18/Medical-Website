@@ -1,11 +1,11 @@
-﻿using System;
+﻿using MedicalWebsite.DTOS.Appointment;
+using MedicalWebsite.DTOS.ViewResult;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vezeeta.Dtos.Appointment;
-using Vezeeta.Dtos.ResultView;
-using Vezeeta.Dtos.ViewResultDtos;
+
 
 namespace Vezeeta.Application.Iservices
 {
@@ -17,7 +17,7 @@ namespace Vezeeta.Application.Iservices
         Task<ResultView<CreatorUpdateAppointment>> SoftDelete(CreatorUpdateAppointment Appointment);
         Task<ResultView<CreatorUpdateAppointment>> HardDelete(CreatorUpdateAppointment Appointment);
 
-        Task<ResultDataForPagination<GetAllAppointement>> GetAllPagination(int items, int pagenumber);
+        Task<ResultDataList<GetAllAppointement>> GetAllPagination(int items, int pagenumber);
         Task<CreatorUpdateAppointment> GetOne(int ID);
 
         Task<ResultView<CreatorUpdateAppointment>> Update(CreatorUpdateAppointment Appointment);

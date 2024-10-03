@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalWebsite.DTOS.Booking
+namespace MedicalWebsite.DTOS.Appointment
 {
     public class GetAllAppointement
     {
