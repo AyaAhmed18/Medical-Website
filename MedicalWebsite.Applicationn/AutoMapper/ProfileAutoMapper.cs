@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MedicalWebsite.DTOS.Appointment;
 using MedicalWebsite.DTOS.Booking;
 using MedicalWebsite.DTOS.Doctor;
 using MedicalWebsite.DTOS.Patients;
