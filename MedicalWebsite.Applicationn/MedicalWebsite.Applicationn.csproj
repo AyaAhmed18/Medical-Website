@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="IService\" />
-    <Folder Include="Service\" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <ProjectReference Include="..\MedicalWebsite.DTOS\MedicalWebsite.DTOS.csproj" />
+    <ProjectReference Include="..\MedicalWebsite.Models\MedicalWebsite.Models.csproj" />
   </ItemGroup>
 
 </Project>

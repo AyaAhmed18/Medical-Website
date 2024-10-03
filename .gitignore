@@ -1002,3 +1002,18 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/MedicalWebsite.Applicationn/obj/MedicalWebsite.Applicationn.csproj.nuget.dgspec.json
+/MedicalWebsite.Applicationn/obj/MedicalWebsite.Applicationn.csproj.nuget.g.targets
+/MedicalWebsite.Applicationn/obj/project.assets.json
+/MedicalWebsite.Applicationn/obj/project.nuget.cache
+/MedicalWebsite.DTOS/obj/Debug/net8.0/MedicalWebsite.DTOS.AssemblyInfoInputs.cache
+/MedicalWebsite.Infrastructure/obj/project.nuget.cache
+/MedicalWebsite.Infrastructure/obj/MedicalWebsite.Infrastructure.csproj.nuget.dgspec.json
+/MedicalWebsite.Infrastructure/obj/project.assets.json
+/MedicalWebsite.Infrastructure/obj/Debug/net8.0/MedicalWebsite.Infrastructure.assets.cache
+/MedicalWebsite.Infrastructure/obj/Debug/net8.0/MedicalWebsite.Infrastructure.AssemblyInfoInputs.cache
+/MedicalWebsite.Applicationn/obj/Debug/net8.0/MedicalWebsite.Applicationn.assets.cache
+/MedicalWebsite.Applicationn/obj/Debug/net8.0/MedicalWebsite.Applicationn.AssemblyInfoInputs.cache
+/MedicalWebsite.Applicationn/obj/Debug/net8.0/MedicalWebsite.Applicationn.AssemblyInfo.cs
+/MedicalWebsite.DTOS/obj/Debug/net8.0/MedicalWebsite.DTOS.AssemblyInfo.cs
+/MedicalWebsite.Infrastructure/obj/Debug/net8.0/MedicalWebsite.Infrastructure.AssemblyInfo.cs

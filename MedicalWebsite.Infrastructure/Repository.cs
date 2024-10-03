@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MedicalWebsite.Infrastructure
 {
-    public class Repository<TEntity, TID> : IRepository<TEntity, TID> where TEntity : BaseEntity
+    public class Repository<TEntity, TID> : IRepository<TEntity, TID> where TEntity : class
     {
         private readonly MedicalContext _medicalContext;
         private readonly DbSet<TEntity> _tEntity;
