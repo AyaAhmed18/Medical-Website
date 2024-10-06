@@ -7,7 +7,7 @@ namespace MedicalWebsite.DTOS.Doctor
 {
     public class CreatorUpdateDoctor
     {
-        public string Id { get; set; }
+        public String Id { get; set; }
         public string UserName { get; set; }
         public string? Title { get; set; }
         public string Phone { get; set; }

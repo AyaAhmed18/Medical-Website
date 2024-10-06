@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MedicalWebsite.Applicationn.Contract
 {
-    public interface IDoctorRepository:IRepository<Doctor,string>
+    public interface IDoctorRepository:IRepository<Doctor, String>
     {
     }
 }

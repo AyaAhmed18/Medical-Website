@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedicalWebsite.Infrastructure
 {
-    public class DoctorRepository:Repository<Doctor,string>,IDoctorRepository
+    public class DoctorRepository:Repository<Doctor, String>,IDoctorRepository
     {
         public DoctorRepository(MedicalContext medicalContext):base(medicalContext)
         { }

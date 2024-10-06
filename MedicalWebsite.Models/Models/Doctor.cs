@@ -13,7 +13,7 @@ namespace MedicalWebsite.Models.Models
     {
        // public string Name { get; set; }
         public string? Title { get; set; }
-        public string Phone { get; set; }
+        public string Phone { get; set; }  /// Delete
         public string? Education { get; set; }
        public string? Adress { get; set; }
         public string? Image { get; set; }

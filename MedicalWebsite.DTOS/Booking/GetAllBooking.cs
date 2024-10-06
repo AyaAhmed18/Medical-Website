@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedicalWebsite.DTOS.Booking
 {
-    public class CreateOrUpdateBooking
+    public class GetAllBooking
     {
         public string? fees { get; set; }
         public TimeOnly? watingTime { get; set; }
@@ -14,6 +14,6 @@ namespace MedicalWebsite.DTOS.Booking
         public DayOfWeek? EndDay { get; set; }
         public TimeOnly StartHour { get; set; }
         public TimeOnly EndHour { get; set; }
-        public string DoctorId { get; set; }
+        public string Doctor { get; set; }
     }
 }
