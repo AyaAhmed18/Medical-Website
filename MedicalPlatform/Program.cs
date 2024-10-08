@@ -32,7 +32,8 @@ namespace MedicalPlatform
             builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             builder.Services.AddScoped<IPatientService, PatientService>();
             builder.Services.AddScoped<IpatientRepository, PatientRepository>();
-
+            builder.Services.AddScoped<IReviewService, ReviewService>();
+            builder.Services.AddScoped<IReviewRepository,ReviewRepository>();
 
             builder.Services.AddControllers().AddJsonOptions(options =>
      {
