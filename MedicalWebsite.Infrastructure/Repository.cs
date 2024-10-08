@@ -36,6 +36,11 @@ namespace MedicalWebsite.Infrastructure
         {
             return await _tEntity.FindAsync(id);
         }
+        //public async Task<Appointment> GetByIdAsync(Guid id)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
 
         public async Task<int> SaveChangesAsync()
         {

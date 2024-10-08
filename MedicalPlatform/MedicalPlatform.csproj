@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\**" />
+    <Content Remove="Controllers\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <None Remove="Controllers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
       <PrivateAssets>all</PrivateAssets>
@@ -16,11 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\MedicalWebsite.Applicationn\MedicalWebsite.Applicationn.csproj" />
     <ProjectReference Include="..\MedicalWebsite.Context\MedicalWebsite.Context.csproj" />
+    <ProjectReference Include="..\MedicalWebsite.DTOS\MedicalWebsite.DTOS.csproj" />
+    <ProjectReference Include="..\MedicalWebsite.Infrastructure\MedicalWebsite.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

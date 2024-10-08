@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedicalWebsite.Applicationn.Contract
 {
-    public interface IAppointmentRepository: IRepository<Appointment,int >
+    public interface IAppointmentRepository: IRepository<Appointment,Guid >
     { 
     }
 }

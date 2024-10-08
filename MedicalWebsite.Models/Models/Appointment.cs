@@ -13,7 +13,8 @@ namespace MedicalWebsite.Models.Models
         public DateTime BookngTime { get; set; }
         public Boolean Status { get; set; }  //confirmed , cancelled
         public int payment { get; set; } //cash , paypal , mobile wallet\
-       
+        //public string Location { get; set; }
+
         // Foreign Keys   
         public string PatientId { get; set; }
         public Patient Patient { get; set; }

@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
+using MedicalWebsite.DTOS.Appointment;
 using MedicalWebsite.DTOS.Booking;
 using MedicalWebsite.DTOS.Doctor;
 using MedicalWebsite.DTOS.Patients;
@@ -9,7 +11,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace MedicalWebsite.Applicationn.AutoMapper
 {
     public class ProfileAutoMapper:Profile
@@ -20,10 +21,24 @@ namespace MedicalWebsite.Applicationn.AutoMapper
             CreateMap<GetAllAppointement, Appointment>().ReverseMap();
             CreateMap<CreatorUpdateDoctor, Doctor>().ReverseMap();
             CreateMap<GetAllDoctors, Doctor>().ReverseMap();
-            CreateMap<GetAllReviewsDto, Review>().ReverseMap();
-            CreateMap<CreatorUpdatePatient, Patient>().ReverseMap();
-
            
+
+            //CreateMap<CreatorUpdatePatient, Patient>().ReverseMap();
+            //CreateMap<GetAllPatients, Patient>().ReverseMap();
+
+            CreateMap<CreatorUpdatePatient, Patient>()
+                .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender == Gender.Male ? false : true))
+                .ReverseMap()
+                .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender ? Gender.Female : Gender.Male));
+
+            CreateMap<GetAllPatients, Patient>()
+                .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender == Gender.Male ? false : true))
+                .ReverseMap()
+                .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender ? Gender.Female : Gender.Male));
+
+            CreateMap<GetAllReviewsDto, Review>().ReverseMap();
+            CreateMap<CreateUpdateReviews, Review>().ReverseMap();
+
         }
-    }
+}
 }
