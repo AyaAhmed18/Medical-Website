@@ -6,6 +6,7 @@ using MedicalWebsite.Infrastructure;
 using MedicalWebsite.Models.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Vezeeta.Application.Iservices;
 //using SendGrid.Helpers.Mail;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,15 +19,20 @@ builder.Services.AddDbContext<MedicalContext>(options =>
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
     options.SignIn.RequireConfirmedEmail = true;  
-  //  options.Tokens.EmailConfirmationTokenProvider = "emailconfirmation";
+ 
 })
-    .AddEntityFrameworkStores<MedicalContext>().AddDefaultTokenProviders(); ;
+    .AddEntityFrameworkStores<MedicalContext>().AddDefaultTokenProviders(); 
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<IDoctorService, DoctorService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ISpeciallizationService, SpecializationService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ISpicallizationRepository, SpecializationRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //builder.Services.Configure<MailSettings>

@@ -5,7 +5,7 @@ using MedicalWebsite.DTOS.User;
 using MedicalWebsite.DTOS.ViewResult;
 using MedicalWebsite.Models.Models;
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,14 +41,103 @@ namespace MedicalWebsite.Applicationn.Service
             throw new NotImplementedException();
         }
 
-        public Task<ResultView<List<UserDTO>>> GetAllUsersPages(int items, int pagenumber)
+        public async Task<ResultView<List<UserDTO>>> GetAllUsersPages(int items, int pagenumber)
         {
-            throw new NotImplementedException();
+            var Alldata = (_userManager.Users);
+            if (Alldata == null)
+            {
+                return new ResultView<List<UserDTO>>
+                {
+                    Entity = null,
+                    IsSuccess = false,
+                    Message = "No users found."
+                };
+            }
+            var userlist = await Alldata.Skip(items * (pagenumber - 1)).Take(items).ToListAsync();
+            var userDTOs = _mapper.Map<List<UserDTO>>(userlist);
+
+            return new ResultView<List<UserDTO>>
+            {
+                Entity = userDTOs,
+                IsSuccess = true,
+                Message = "Successfully retrieved all users."
+            };
         }
 
-        public Task<ResultView<UserDTO>> LoginAsync(UserLoginDTO userDto)
+        public async Task<ResultView<UserDTO>> LoginAsync(UserLoginDTO userDto)
         {
-            throw new NotImplementedException();
+            // if (ModelState.IsValid)
+            if (userDto == null)
+            {
+                return new ResultView<UserDTO>
+                {
+                    Entity = null,
+                    Message = "Login data is missing",
+                    IsSuccess = false
+                };
+            }
+
+            if (string.IsNullOrWhiteSpace(userDto.Email) || string.IsNullOrWhiteSpace(userDto.password))
+            {
+                return new ResultView<UserDTO>
+                {
+                    Entity = null,
+                    Message = "Email and password are required",
+                    IsSuccess = false
+                };
+            }
+
+            var oldUser = await _userManager.FindByEmailAsync(userDto.Email);
+            if (oldUser == null)
+            {
+                return new ResultView<UserDTO>
+                {
+                    Entity = null,
+                    Message = "Email not found",
+                    IsSuccess = false
+                };
+            }
+
+            if (await _userManager.IsLockedOutAsync(oldUser))
+            {
+                return new ResultView<UserDTO>
+                {
+                    Entity = null,
+                    Message = "Account locked due to too many failed login attempts",
+                    IsSuccess = false
+                };
+            }
+
+            var result = await _signInManager.CheckPasswordSignInAsync(oldUser, userDto.password, lockoutOnFailure: false);
+            if (!result.Succeeded)
+            {
+                return new ResultView<UserDTO>
+                {
+                    Entity = null,
+                    Message = "Invalid password",
+                    IsSuccess = false
+                };
+            }
+
+            var userRoles = await _userManager.GetRolesAsync(oldUser);
+            var roleName = userRoles.FirstOrDefault() ?? "No Role Assigned";
+
+            UserDTO userObj = new UserDTO()
+            {
+                Email = oldUser.Email ?? "No Email",
+                Id = oldUser.Id,
+                Role = roleName,
+               
+            };
+
+            await _signInManager.SignInAsync(oldUser, userDto.rememberMe);
+
+            return new ResultView<UserDTO>
+            {
+                Entity = userObj,
+                Message = "Login Successful",
+                IsSuccess = true
+            };
         }
 
         public Task<bool> LogoutUser()

@@ -12,12 +12,12 @@ namespace MedicalWebsite.Applicationn.IService
 {
     public interface IDoctorService
     {
-        Task<ResultView<RegisterDTO>> RegisterAsDoctor(RegisterDTO DoctorDto);
-        Task<CreatorUpdateDoctor> LoginAsDoctor(CreatorUpdateDoctor DoctorDto);
+        Task<ResultView<RegisterDTO>> RegisterAsDoctor(RegisterDTO DoctorDto);  //
+        Task<ResultView<CreatorUpdateDoctor>> LoginAsDoctor(CreatorUpdateDoctor DoctorDto);
         Task<ResultDataList<GetAllDoctors>> GetAllDoctors();
         Task<ResultDataList<GetAllDoctors>> GetDoctorsBySpecialization();
-        Task<ResultDataList<GetAllDoctors>> GetDoctorsBy();
-        Task<ResultView<CreatorUpdateDoctor>> GetDoctorById(string id);
+        Task<ResultDataList<GetAllDoctors>> GetAllDoctorsPages(int items, int pagenumber);///
+        Task<ResultView<CreatorUpdateDoctor>> GetDoctorById(string id);//
         Task<ResultView<CreatorUpdateDoctor>> HardDeleteDoctor(CreatorUpdateDoctor DoctorDto);
         Task<ResultView<CreatorUpdateDoctor>> BlockDoctor(string DoctorId);
         Task<ResultView<CreatorUpdateDoctor>> UpdateDoctor(CreatorUpdateDoctor DoctorDto);

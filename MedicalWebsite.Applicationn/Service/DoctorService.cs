@@ -27,9 +27,31 @@ namespace MedicalWebsite.Applicationn.Service
             _mapper = mapper;
             _userService = userService;
         }
-        public Task<ResultView<CreatorUpdateDoctor>> BlockDoctor(string DoctorId)
+        public async Task<ResultView<CreatorUpdateDoctor>> BlockDoctor(string DoctorId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var doctor = await _doctorRepository.GetByIdAsync(DoctorId);
+                if (doctor == null)
+                {
+                    return new ResultView<CreatorUpdateDoctor> { Entity = null, IsSuccess = false, Message = "This Doctor is not found" };
+
+                }
+                else
+                {
+                    doctor.IsDeleted = true;
+                    await _doctorRepository.SaveChangesAsync();
+
+                    var TopicDto = _mapper.Map<CreatorUpdateDoctor>(doctor);
+                    return new ResultView<CreatorUpdateDoctor> { Entity = TopicDto, IsSuccess = true, Message = "Blocked " };
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultView<CreatorUpdateDoctor> { Entity = null, IsSuccess = false, Message = ex.Message };
+
+            }
         }
 
         public Task<IdentityResult> ConfirmEmailAsync(string userId, string token)
@@ -61,9 +83,37 @@ namespace MedicalWebsite.Applicationn.Service
             }
         }
 
-        public Task<ResultDataList<GetAllDoctors>> GetDoctorsBy()
+        public async Task<ResultDataList<GetAllDoctors>>  GetAllDoctorsPages(int items, int pagenumber)
         {
-            throw new NotImplementedException();
+            var Alldata = (await _doctorRepository.GetAllAsync());//.ToList();
+            if (Alldata == null)
+            {
+                return new ResultDataList<GetAllDoctors>
+                {
+                    Entities = null,
+                    Count = 0
+                     
+                };
+            }
+            var userlist = await Alldata.Skip(items * (pagenumber - 1)).Take(items).Select(d=>new GetAllDoctors()
+            {
+                Adress=d.Adress,
+                Education=d.Education,
+                UserName=d.UserName,
+                Gender=d.Gender,
+                Image=d.Image,
+                Phone=d.Phone,
+                Specialization=d.Specialization.Title,
+                Title=d.Title,
+
+            }).ToListAsync();
+          //  var userDTOs = _mapper.Map<List<GetAllDoctors>>(userlist);
+
+            return new ResultDataList<GetAllDoctors>
+            {
+                Entities = userlist,
+                Count = userlist.Count()
+            };
         }
 
         public Task<ResultDataList<GetAllDoctors>> GetDoctorsBySpecialization()
@@ -97,9 +147,18 @@ namespace MedicalWebsite.Applicationn.Service
             }
         }
 
-        public Task<CreatorUpdateDoctor> LoginAsDoctor(CreatorUpdateDoctor DoctorDto)
+        public async Task<ResultView<CreatorUpdateDoctor>> LoginAsDoctor(CreatorUpdateDoctor DoctorDto)
         {
-            throw new NotImplementedException();
+            var user = (await _doctorRepository.GetByIdAsync(DoctorDto.Id));
+            var Doctorto = _mapper.Map<UserLoginDTO>(user);
+            var Doctor = await _userService.LoginAsync(Doctorto);
+            if (Doctor.IsSuccess) {
+                var Doctorr = _mapper.Map<CreatorUpdateDoctor>(Doctor);
+                var res= new ResultView<CreatorUpdateDoctor>() { IsSuccess=true,Entity=Doctorr,Message="Successfully Login"};
+                return res;
+            }
+           
+            return new ResultView<CreatorUpdateDoctor>() { IsSuccess = true, Entity = null, Message = "Failed to Login" }; ;
         }
 
         public async Task<ResultView<RegisterDTO>> RegisterAsDoctor(RegisterDTO DoctorDto)

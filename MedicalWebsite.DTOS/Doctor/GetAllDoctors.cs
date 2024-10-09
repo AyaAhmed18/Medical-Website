@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MedicalWebsite.DTOS.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MedicalWebsite.DTOS.Doctor { 
-    public class GetAllDoctors
+    public class GetAllDoctors:UserDTO
     {
        
         public string UserName { get; set; }
