@@ -1,3 +1,4 @@
+using MedicalWebsite.Application.Iservices;
 using MedicalWebsite.Applicationn.Contract;
 using MedicalWebsite.Applicationn.IService;
 using MedicalWebsite.Applicationn.Service;
@@ -6,6 +7,7 @@ using MedicalWebsite.Infrastructure;
 using MedicalWebsite.Models.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using Vezeeta.Application.Iservices;
 //using SendGrid.Helpers.Mail;
 
@@ -28,6 +30,18 @@ builder.Services.AddScoped<IDoctorService, DoctorService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISpeciallizationService, SpecializationService>();
 builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+builder.Services.AddScoped<IPatientService, PatientService>();
+builder.Services.AddScoped<IpatientRepository, PatientRepository>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
+
 
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();

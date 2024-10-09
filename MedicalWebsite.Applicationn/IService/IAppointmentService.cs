@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Vezeeta.Application.Iservices
+namespace MedicalWebsite.Application.Iservices
 {
     public interface IAppointmentService
     {
@@ -18,7 +18,7 @@ namespace Vezeeta.Application.Iservices
         Task<ResultView<CreatorUpdateAppointment>> HardDelete(CreatorUpdateAppointment Appointment);
 
         Task<ResultDataList<GetAllAppointement>> GetAllPagination(int items, int pagenumber);
-        Task<CreatorUpdateAppointment> GetOne(int ID);
+        Task<CreatorUpdateAppointment> GetOne(Guid ID);
 
         Task<ResultView<CreatorUpdateAppointment>> Update(CreatorUpdateAppointment Appointment);
 

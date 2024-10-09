@@ -8,7 +8,7 @@ namespace MedicalWebsite.DTOS.Review
 {
     public class CreateUpdateReviews
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string review { get; set; }
         public int? Rate { get; set; }

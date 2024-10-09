@@ -1017,3 +1017,9 @@ FodyWeavers.xsd
 /MedicalWebsite.Applicationn/obj/Debug/net8.0/MedicalWebsite.Applicationn.AssemblyInfo.cs
 /MedicalWebsite.DTOS/obj/Debug/net8.0/MedicalWebsite.DTOS.AssemblyInfo.cs
 /MedicalWebsite.Infrastructure/obj/Debug/net8.0/MedicalWebsite.Infrastructure.AssemblyInfo.cs
+/MedicalWebsite.Context/obj/Debug/net8.0/MedicalWebsite.Context.assets.cache
+/MedicalWebsite.Context/obj/Debug/net8.0/MedicalWebsite.Context.GeneratedMSBuildEditorConfig.editorconfig
+/MedicalWebsite.DTOS/obj/Debug/net8.0/MedicalWebsite.DTOS.GeneratedMSBuildEditorConfig.editorconfig
+/MedicalWebsite.Infrastructure/obj/Debug/net8.0/MedicalWebsite.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/MedicalWebsite.Models/obj/Debug/net8.0/MedicalWebsite.Models.assets.cache
+/MedicalWebsite.Models/obj/Debug/net8.0/MedicalWebsite.Models.GeneratedMSBuildEditorConfig.editorconfig

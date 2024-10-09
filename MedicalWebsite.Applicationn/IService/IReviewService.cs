@@ -12,14 +12,14 @@ namespace Vezeeta.Application.Iservices
     public interface IReviewService
     {
         Task<ResultView<CreateUpdateReviews>> Create(CreateUpdateReviews review);
-        Task<ResultView<CreateUpdateReviews>> SoftDelete(CreateUpdateReviews review);
+        Task<ResultView<GetAllReviewsDto>> SoftDelete(GetAllReviewsDto review);
         Task<ResultView<CreateUpdateReviews>> HardDelete(CreateUpdateReviews review);
         Task<ResultDataList<GetAllReviewsDto>> GetAllPagination(int items, int pagenumber);
         Task<ResultDataList<GetAllReviewsDto>> GetHighRate(int items, int pagenumber);
 
-        Task<CreateUpdateReviews> GetOne(int ID);
+        Task<GetAllReviewsDto> GetOne(int ID);
         Task<ResultView<CreateUpdateReviews>> Update(CreateUpdateReviews review);
 
-
+        Task<int> SaveShanges();
     }
 }

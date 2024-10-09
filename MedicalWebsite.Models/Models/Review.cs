@@ -10,7 +10,7 @@ namespace MedicalWebsite.Models.Models
     {
         public int Rating { get; set; }
         public string? Comment { get; set; }
-        public int HelpfulVotes { get; set; } = 0;
+        //public int HelpfulVotes { get; set; } = 0;
 
 
 

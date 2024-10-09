@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace MedicalWebsite.Infrastructure
 {
-    public class AppointmentRepository:Repository<Appointment,int>,IAppointmentRepository
+    public class AppointmentRepository:Repository<Appointment, Guid>,IAppointmentRepository
     {
         public AppointmentRepository(MedicalContext medicalContext):base(medicalContext) { }
+
+      
+        
     }
 }

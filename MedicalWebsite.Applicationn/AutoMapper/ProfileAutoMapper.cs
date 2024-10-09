@@ -23,15 +23,31 @@ namespace MedicalWebsite.Applicationn.AutoMapper
             CreateMap<GetAllAppointement, Appointment>().ReverseMap();
             CreateMap<CreatorUpdateDoctor, Doctor>().ReverseMap();
             CreateMap<GetAllDoctors, Doctor>().ReverseMap();
-            CreateMap<GetAllReviewsDto, Review>().ReverseMap();
-            CreateMap<CreatorUpdatePatient, Patient>().ReverseMap();
+         //   CreateMap<GetAllReviewsDto, Review>().ReverseMap();
+            //CreateMap<CreatorUpdatePatient, Patient>().ReverseMap();
 
+
+            CreateMap<CreatorUpdatePatient, Patient>()
+         .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender == Gender.Male ? false : true))
+         .ReverseMap()
+         .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender ? Gender.Female : Gender.Male));
+
+            CreateMap<GetAllPatients, Patient>()
+                .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender == Gender.Male ? false : true))
+                .ReverseMap()
+                .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender ? Gender.Female : Gender.Male));
+
+            CreateMap<GetAllReviewsDto, Review>().ReverseMap();
+            CreateMap<CreateUpdateReviews, Review>().ReverseMap();
 
             CreateMap<UserDTO, User>().ReverseMap();
             CreateMap<UserLoginDTO, User>().ReverseMap();
             CreateMap<UserLoginInfo, User>().ReverseMap();
             CreateMap<RegisterDTO, CreatorUpdateDoctor>().ReverseMap();
             CreateMap<RegisterDTO, User>().ReverseMap();
+
+
+
 
 
         }
