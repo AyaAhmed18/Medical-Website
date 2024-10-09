@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Vezeeta.Application.Iservices
+namespace MedicalWebsite.Applicationn.IService
 {
     public interface IReviewService
     {

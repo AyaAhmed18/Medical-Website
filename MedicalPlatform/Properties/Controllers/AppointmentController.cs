@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MedicalWebsite.Application.Iservices;
+using MedicalWebsite.Applicationn.IService;
 using MedicalWebsite.DTOS;
 using MedicalWebsite.DTOS.Appointment;
 using MedicalWebsite.Applicationn.Service;

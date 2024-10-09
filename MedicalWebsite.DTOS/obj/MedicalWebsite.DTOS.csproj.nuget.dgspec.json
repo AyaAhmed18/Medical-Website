@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj": {}
+    "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj": {}
   },
   "projects": {
-    "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj": {
+    "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
+        "projectUniqueName": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
         "projectName": "MedicalWebsite.DTOS",
-        "projectPath": "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.DTOS\\obj\\",
+        "projectPath": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
+        "packagesPath": "C:\\Users\\GAMA\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.DTOS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GAMA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,6 +35,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -65,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

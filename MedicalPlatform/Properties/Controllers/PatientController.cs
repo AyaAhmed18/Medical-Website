@@ -1,10 +1,9 @@
-﻿using MedicalWebsite.Application.Iservices;
-using MedicalWebsite.Applicationn.Service;
+﻿using MedicalWebsite.Applicationn.Service;
 using MedicalWebsite.DTOS.Appointment;
 using MedicalWebsite.DTOS.Patients;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using MedicalWebsite.Applicationn.IService;
 namespace MedicalPlatform.Properties.Controllers
 {
     [Route("api/[controller]")]

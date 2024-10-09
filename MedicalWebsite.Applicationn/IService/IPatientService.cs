@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace MedicalWebsite.Application.Iservices
+namespace MedicalWebsite.Applicationn.IService
 {
     public interface IPatientService
     {

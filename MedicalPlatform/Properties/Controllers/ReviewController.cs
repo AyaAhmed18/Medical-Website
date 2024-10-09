@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Vezeeta.Application.Iservices;
-
+using MedicalWebsite.Applicationn.IService;
 namespace MedicalPlatform.Properties.Controllers
 {
     [Route("api/[controller]")]
