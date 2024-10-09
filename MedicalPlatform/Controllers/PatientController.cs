@@ -4,7 +4,7 @@ using MedicalWebsite.DTOS.Patients;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MedicalWebsite.Applicationn.IService;
-namespace MedicalPlatform.Properties.Controllers
+namespace MedicalPlatform.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -12,7 +12,7 @@ namespace MedicalPlatform.Properties.Controllers
     {
         private readonly IPatientService _patientService;
 
-        public PatientController( IPatientService patientService)
+        public PatientController(IPatientService patientService)
         {
             _patientService = patientService;
         }
@@ -30,7 +30,7 @@ namespace MedicalPlatform.Properties.Controllers
             return Ok(productsDataList);
 
         }
-        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAppointment(GetAllPatients patient)
         {

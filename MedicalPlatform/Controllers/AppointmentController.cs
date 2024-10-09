@@ -4,7 +4,7 @@ using MedicalWebsite.Applicationn.IService;
 using MedicalWebsite.DTOS;
 using MedicalWebsite.DTOS.Appointment;
 using MedicalWebsite.Applicationn.Service;
-namespace MedicalPlatform.Properties.Controllers
+namespace MedicalPlatform.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,9 +20,9 @@ namespace MedicalPlatform.Properties.Controllers
         public async Task<IActionResult> CreateAppointment([FromBody] CreatorUpdateAppointment appointment)
         {
             try
-            {             
+            {
                 var result = await _appointmentService.Create(appointment);
-                return Ok(result.Entity);               
+                return Ok(result.Entity);
             }
             catch (Exception ex)
             {
@@ -37,7 +37,7 @@ namespace MedicalPlatform.Properties.Controllers
 
                 var result = await _appointmentService.Update(appointment);
                 return Ok(result.Entity);
-                
+
             }
             catch (Exception ex)
             {
