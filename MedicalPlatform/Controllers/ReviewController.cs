@@ -1,9 +1,11 @@
-﻿using MedicalWebsite.DTOS.Review;
+﻿using MedicalWebsite.Applicationn.Service;
+using MedicalWebsite.DTOS.Appointment;
+using MedicalWebsite.DTOS.Patients;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Vezeeta.Application.Iservices;
-
-namespace MedicalPlatform.Properties.Controllers
+using MedicalWebsite.Applicationn.IService;
+using MedicalWebsite.DTOS.Review;
+namespace MedicalPlatform.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,10 +23,10 @@ namespace MedicalPlatform.Properties.Controllers
         {
             try
             {
-                
+
                 var result = await _reviewService.Create(review);
-                 return Ok(new { message = result.Message, review = result.Entity });
-                
+                return Ok(new { message = result.Message, review = result.Entity });
+
             }
             catch (Exception ex)
             {
@@ -38,7 +40,7 @@ namespace MedicalPlatform.Properties.Controllers
             try
             {
                 var result = await _reviewService.Update(review);
-                return Ok(new { message = result.Message, review = result.Entity });               
+                return Ok(new { message = result.Message, review = result.Entity });
             }
             catch (Exception ex)
             {
@@ -79,10 +81,10 @@ namespace MedicalPlatform.Properties.Controllers
         {
             try
             {
-                var review = (await _reviewService.GetOne(id));
+                var review = await _reviewService.GetOne(id);
                 if (review != null)
                 {
-                    return (Ok(review));
+                    return Ok(review);
                 }
                 else
                 {
@@ -110,4 +112,3 @@ namespace MedicalPlatform.Properties.Controllers
         }
     }
 }
-   

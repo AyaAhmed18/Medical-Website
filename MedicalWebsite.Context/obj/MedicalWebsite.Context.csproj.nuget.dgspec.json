@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj": {}
+    "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj": {}
   },
   "projects": {
-    "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj": {
+    "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj",
+        "projectUniqueName": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj",
         "projectName": "MedicalWebsite.Context",
-        "projectPath": "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Context\\obj\\",
+        "projectPath": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj",
+        "packagesPath": "C:\\Users\\GAMA\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Context\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GAMA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +22,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {
-                "projectPath": "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj"
+              "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {
+                "projectPath": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj"
               }
             }
           }
@@ -38,6 +39,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -77,21 +83,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {
+    "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
+        "projectUniqueName": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
         "projectName": "MedicalWebsite.Models",
-        "projectPath": "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Models\\obj\\",
+        "projectPath": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
+        "packagesPath": "C:\\Users\\GAMA\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\Medical Website\\Medical-Website\\MedicalWebsite.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GAMA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -99,6 +105,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -111,6 +118,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -138,7 +150,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

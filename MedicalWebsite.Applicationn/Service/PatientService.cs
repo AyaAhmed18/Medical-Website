@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MedicalWebsite.Application.Iservices;
+using MedicalWebsite.Applicationn.IService;
 using MedicalWebsite.DTOS.Appointment;
 
 namespace MedicalWebsite.Applicationn.Service

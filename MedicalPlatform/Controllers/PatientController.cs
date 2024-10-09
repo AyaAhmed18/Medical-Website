@@ -1,11 +1,10 @@
-﻿using MedicalWebsite.Application.Iservices;
-using MedicalWebsite.Applicationn.Service;
+﻿using MedicalWebsite.Applicationn.Service;
 using MedicalWebsite.DTOS.Appointment;
 using MedicalWebsite.DTOS.Patients;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-namespace MedicalPlatform.Properties.Controllers
+using MedicalWebsite.Applicationn.IService;
+namespace MedicalPlatform.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -13,7 +12,7 @@ namespace MedicalPlatform.Properties.Controllers
     {
         private readonly IPatientService _patientService;
 
-        public PatientController( IPatientService patientService)
+        public PatientController(IPatientService patientService)
         {
             _patientService = patientService;
         }
@@ -31,7 +30,7 @@ namespace MedicalPlatform.Properties.Controllers
             return Ok(productsDataList);
 
         }
-        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAppointment(GetAllPatients patient)
         {
