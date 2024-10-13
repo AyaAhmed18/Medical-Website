@@ -10,9 +10,13 @@ namespace MedicalWebsite.DTOS.ViewResult
     {
         public List<TEntity> Entities { get; set;}
         public int Count { get; set;}
+        public int? CurrentPage { get; set; }
+        public int? TotalPages { get; set; }
+        public int? PageSize { get; set; }
         public ResultDataList()
         {
             Entities = new List<TEntity>();
         }
+
     }
 }

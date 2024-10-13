@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "5bWikRLJljCoU6U8Xd9yZ+mKR13WjUpm+Lm5wkiR2PUWnKkI9yHtti7Q6KfoKBG0fQ+3tdy/A0Jl2fxQgr9rFw==",
+  "dgSpecHash": "j4/EGC4kmlxcrjd2M0NKipWHoZjR+vtag4drqpK4tPJ8aywtI52KVoviNJajrJzsLgsB7ZHCPiM2KVomZ5dppw==",
   "success": true,
   "projectFilePath": "E:\\Asmaa\\Asmaaa\\Medical\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.8\\microsoft.aspnetcore.cryptography.internal.8.0.8.nupkg.sha512",

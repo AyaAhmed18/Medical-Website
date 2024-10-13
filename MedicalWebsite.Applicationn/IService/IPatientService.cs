@@ -7,18 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Vezeeta.Application.Iservices
+namespace MedicalWebsite.Application.Iservices
 {
     public interface IPatientService
     {
-        Task<ResultView<CreatorUpdatePatient>> Create(CreatorUpdatePatient patient);
+        //Task<ResultView<CreatorUpdatePatient>> Create(CreatorUpdatePatient patient);
 
 
         Task<ResultView<GetAllPatients>> SoftDelete(GetAllPatients patient);
         Task<ResultDataList<GetAllPatients>> GetAllPagination(int items, int pagenumber);
-        Task<GetAllPatients> GetOne(int ID);
+        Task<GetAllPatients> GetOne(string ID);
 
-        Task<ResultView<CreatorUpdatePatient>> Update(CreatorUpdatePatient patient);
+        //Task<ResultView<CreatorUpdatePatient>> Update(CreatorUpdatePatient patient);
 
 
         Task<int> SaveShanges();
