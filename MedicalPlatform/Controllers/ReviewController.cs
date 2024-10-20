@@ -49,7 +49,7 @@ namespace MedicalPlatform.Controllers
         }
 
         [HttpGet("GettAllReviews")]
-        public async Task<IActionResult> GetAllReviews(int pageSize, int pageNumber)
+        public async Task<IActionResult> GetAllReviews(int pageSize, int pageNumber=1)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace MedicalPlatform.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetReview(int id)
+        public async Task<IActionResult> GetReview(Guid id)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace MedicalPlatform.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletReview(int id)
+        public async Task<IActionResult> DeletReview(Guid id)
         {
             try
             {

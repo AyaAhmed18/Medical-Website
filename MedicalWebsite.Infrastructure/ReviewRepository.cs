@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedicalWebsite.Infrastructure
 {
-    public class ReviewRepository:Repository<Review,int>,IReviewRepository
+    public class ReviewRepository:Repository<Review, Guid>,IReviewRepository
     {
         public ReviewRepository(MedicalContext medicalContext):base(medicalContext) { }
     }

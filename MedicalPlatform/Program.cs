@@ -14,57 +14,73 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-builder.Services.AddDbContext<MedicalContext>(options =>
-              options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
-builder.Services.AddIdentity<User, IdentityRole>(options =>
-{
-    options.SignIn.RequireConfirmedEmail = true;  
+        builder.Services.AddControllers();
+
+        //  cors service 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAngularApp", policy =>
+            {
+                policy.WithOrigins("http://localhost:4200")  
+                      .AllowAnyHeader()  
+                      .AllowAnyMethod()  
+                      .AllowCredentials(); 
+            });
+        });
+
+
+        builder.Services.AddDbContext<MedicalContext>(options =>
+                      options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+        builder.Services.AddIdentity<User, IdentityRole>(options =>
+        {
+            options.SignIn.RequireConfirmedEmail = true;  
  
-})
-    .AddEntityFrameworkStores<MedicalContext>().AddDefaultTokenProviders(); 
-builder.Services.AddEndpointsApiExplorer();
+        })
+            .AddEntityFrameworkStores<MedicalContext>().AddDefaultTokenProviders(); 
+        builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddScoped<IDoctorService, DoctorService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ISpeciallizationService, SpecializationService>();
-builder.Services.AddScoped<IBookingService, BookingService>();
-builder.Services.AddScoped<IAppointmentService, AppointmentService>();
-builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-builder.Services.AddScoped<IPatientService, PatientService>();
-builder.Services.AddScoped<IpatientRepository, PatientRepository>();
-builder.Services.AddScoped<IReviewService, ReviewService>();
-builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+        builder.Services.AddScoped<IDoctorService, DoctorService>();
+        builder.Services.AddScoped<IUserService, UserService>();
+        builder.Services.AddScoped<ISpeciallizationService, SpecializationService>();
+        builder.Services.AddScoped<IBookingService, BookingService>();
+        builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+        builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+        builder.Services.AddScoped<IPatientService, PatientService>();
+        builder.Services.AddScoped<IpatientRepository, PatientRepository>();
+        builder.Services.AddScoped<IReviewService, ReviewService>();
+        builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-});
+        builder.Services.AddControllers().AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
 
 
-builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ISpicallizationRepository, SpecializationRepository>();
-builder.Services.AddScoped<IBookingRepository, BookingRepository>();
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<ISpicallizationRepository, SpecializationRepository>();
+        builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+        builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-//builder.Services.Configure<MailSettings>
-  //             (builder.Configuration.GetSection("MailSettings"));
+        //builder.Services.Configure<MailSettings>
+          //             (builder.Configuration.GetSection("MailSettings"));
 
-builder.Services.AddTransient<IEmailSender, EmailService>();
-builder.Services.AddSwaggerGen();
+        builder.Services.AddTransient<IEmailSender, EmailService>();
+        builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+        var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
 
-app.UseAuthorization();
+        app.UseCors("AllowAngularApp");
 
-app.MapControllers();
+        app.UseAuthorization();
 
-app.Run();
+        app.MapControllers();
+
+        app.Run();

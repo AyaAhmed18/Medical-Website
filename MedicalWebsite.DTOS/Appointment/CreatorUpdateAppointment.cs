@@ -9,7 +9,7 @@ namespace MedicalWebsite.DTOS.Appointment
 {
     public class CreatorUpdateAppointment
     {
-        public Guid Id { get; set; }
+        //public Guid Id { get; set; }
         public DateTime Time { get; set; }
         //public string Day { get; set; }
         //public string Location { get; set; }

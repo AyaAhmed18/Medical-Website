@@ -11,7 +11,7 @@ namespace MedicalWebsite.DTOS.Review
         public Guid Id { get; set; }
         //public string Title { get; set; }
         public string Comment { get; set; }
-        public int? Rate { get; set; }
+        public int? Rateing { get; set; }
         public string PatientName { get; set; }
         public string DoctorName { get; set; }
     }

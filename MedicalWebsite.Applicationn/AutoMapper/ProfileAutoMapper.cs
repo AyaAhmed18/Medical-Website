@@ -19,7 +19,15 @@ namespace MedicalWebsite.Applicationn.AutoMapper
     {
         public ProfileAutoMapper() 
         {
-            CreateMap<CreatorUpdateAppointment, Appointment>().ReverseMap();
+            //CreateMap<CreatorUpdateAppointment, Appointment>().ReverseMap();
+
+            CreateMap<CreatorUpdateAppointment, Appointment>()
+           .ForMember(dest => dest.BookngTime, opt => opt.MapFrom(src => src.Time))
+           .ReverseMap()
+           .ForMember(dest => dest.Time, opt => opt.MapFrom(src => src.BookngTime));
+
+
+
             CreateMap<GetAllAppointement, Appointment>().ReverseMap();
             CreateMap<CreatorUpdateDoctor, Doctor>().ReverseMap();
             CreateMap<GetAllDoctors, Doctor>().ReverseMap();
