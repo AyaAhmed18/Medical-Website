@@ -162,9 +162,9 @@ namespace MedicalWebsite.Applicationn.Service
                         PhoneNumber=account.Phone,
                         Adress=account.Adress,
                         Gender=account.Gender,
-                        Education=account.Education,
-                        SpecializationId= account.SpecializationId,
-                       // EmailConfirmed = true
+                        Education = account.Education,
+                        SpecializationId = (Guid)account.SpecializationId,
+                        // EmailConfirmed = true
                     };
 
                     var result = await _userManager.CreateAsync(NewUser, account.password);

@@ -113,6 +113,7 @@ namespace MedicalWebsite.Applicationn.Service
                                               Id = p.Id,
                                               Time = p.BookngTime,
                                               DoctorName = p.Doctor?.UserName ?? "unknown doctor",
+                                              PatientName = p.Patient?.UserName ?? "unknown Patient",
                                               Status = p.Status,
                                               Payment = p.payment.ToString()
                                           })

@@ -62,10 +62,21 @@ var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddScoped<IBookingRepository, BookingRepository>();
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-        //builder.Services.Configure<MailSettings>
-          //             (builder.Configuration.GetSection("MailSettings"));
+//builder.Services.Configure<MailSettings>
+//             (builder.Configuration.GetSection("MailSettings"));
 
-        builder.Services.AddTransient<IEmailSender, EmailService>();
+        builder.Services.Configure<IdentityOptions>(options =>
+        {
+            // Password settings
+            options.Password.RequireDigit = true;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireNonAlphanumeric = true;
+            options.Password.RequireUppercase = true;
+            options.Password.RequiredLength = 8; // Adjust as necessary
+        });
+
+
+builder.Services.AddTransient<IEmailSender, EmailService>();
         builder.Services.AddSwaggerGen();
 
         var app = builder.Build();

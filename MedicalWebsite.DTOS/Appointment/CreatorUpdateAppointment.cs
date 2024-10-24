@@ -18,6 +18,8 @@ namespace MedicalWebsite.DTOS.Appointment
         public string DoctorName { get; set; }
         public int PatientId { get; set; }
         public string PatientName { get; set; }
+        public string Payment { get; set; }
+
 
     }
 }

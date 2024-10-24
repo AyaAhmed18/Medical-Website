@@ -69,7 +69,9 @@ namespace MedicalWebsite.Applicationn.Service
                                 Comment = p.Comment,
                                 Rateing = p.Rating,
                                 DoctorName = p.Doctor?.UserName ?? "Unknown Doctor",  
-                                PatientName = p.Patient?.UserName ?? "Unknown Patient" 
+                                PatientName = p.Patient?.UserName ?? "Unknown Patient",
+                                CreatedAt=p.CreatedAt,
+
                             })
                             .ToList();
 
@@ -110,7 +112,8 @@ namespace MedicalWebsite.Applicationn.Service
                                Comment = p.Comment,
                                Rateing = p.Rating,
                                DoctorName = p.Doctor?.UserName ?? "Unknown Doctor",
-                               PatientName = p.Patient?.UserName ?? "Unknown Patient"
+                               PatientName = p.Patient?.UserName ?? "Unknown Patient",
+                               CreatedAt = p.CreatedAt,
                            })
                            .ToList();
 
@@ -173,7 +176,8 @@ namespace MedicalWebsite.Applicationn.Service
                 Comment = onePatient.Comment,
                 Rateing = onePatient.Rating,
                 DoctorName = onePatient.Doctor?.UserName ?? "Unknown Doctor",
-                PatientName = onePatient.Patient?.UserName ?? "Unknown Patient"
+                PatientName = onePatient.Patient?.UserName ?? "Unknown Patient",
+                CreatedAt = onePatient.CreatedAt,
             };
                 //= _mapper.Map<GetAllReviewsDto>(onePatient);
             return Patient;

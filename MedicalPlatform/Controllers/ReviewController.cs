@@ -54,7 +54,7 @@ namespace MedicalPlatform.Controllers
             try
             {
                 var review = await _reviewService.GetAllPagination(pageSize, pageNumber);
-                return Ok(review.Entities);
+                return Ok(review);
             }
             catch (Exception ex)
             {
@@ -68,7 +68,7 @@ namespace MedicalPlatform.Controllers
             try
             {
                 var review = await _reviewService.GetHighRate(pageSize, pageNumber);
-                return Ok(review.Entities);
+                return Ok(review);
             }
             catch (Exception ex)
             {

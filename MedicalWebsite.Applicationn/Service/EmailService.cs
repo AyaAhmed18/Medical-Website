@@ -41,6 +41,7 @@ namespace MedicalWebsite.Applicationn.Service
                 await client.SendMailAsync(mailMessage);
             }
         }
+
     }
 
 }

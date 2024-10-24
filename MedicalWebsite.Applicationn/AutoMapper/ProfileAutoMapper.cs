@@ -40,6 +40,13 @@ namespace MedicalWebsite.Applicationn.AutoMapper
          .ReverseMap()
          .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender ? Gender.Female : Gender.Male));
 
+            //CreateMap<Patient, CreatorUpdatePatient>()
+            //.ForMember(dest => dest.Phone, opt => opt.MapFrom(src => src.PhoneNumber))
+            //.ForMember(dest => dest.Adress, opt => opt.MapFrom(src => src.Adress))
+            //.ForMember(dest => dest.insurance, opt => opt.MapFrom(src => src.insurance))
+          
+            //.ReverseMap();
+
             CreateMap<GetAllPatients, Patient>()
                 .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender == Gender.Male ? false : true))
                 .ReverseMap()
@@ -51,7 +58,8 @@ namespace MedicalWebsite.Applicationn.AutoMapper
             CreateMap<UserDTO, User>().ReverseMap();
             CreateMap<UserLoginDTO, User>().ReverseMap();
             CreateMap<UserLoginInfo, User>().ReverseMap();
-            CreateMap<RegisterDTO, CreatorUpdateDoctor>().ReverseMap();
+            CreateMap<RegisterDTO, User>().ReverseMap();
+            //CreateMap<RegisterDTO, CreatorUpdateDoctor>().ReverseMap();
             CreateMap<RegisterDTO, User>().ReverseMap();
 
 
