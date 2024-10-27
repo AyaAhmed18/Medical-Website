@@ -1,3 +1,4 @@
+using MedicalWebsite.Applicationn.AutoMapper;
 using MedicalWebsite.Applicationn.Contract;
 using MedicalWebsite.Applicationn.IService;
 using MedicalWebsite.Applicationn.Service;
@@ -38,8 +39,8 @@ var builder = WebApplication.CreateBuilder(args);
         })
             .AddEntityFrameworkStores<MedicalContext>().AddDefaultTokenProviders(); 
         builder.Services.AddEndpointsApiExplorer();
-
-        builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddAutoMapper(typeof(ProfileAutoMapper));
+builder.Services.AddScoped<IDoctorService, DoctorService>();
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<ISpeciallizationService, SpecializationService>();
         builder.Services.AddScoped<IBookingService, BookingService>();
@@ -74,6 +75,7 @@ var builder = WebApplication.CreateBuilder(args);
             options.Password.RequireUppercase = true;
             options.Password.RequiredLength = 8; // Adjust as necessary
         });
+
 
 
 builder.Services.AddTransient<IEmailSender, EmailService>();

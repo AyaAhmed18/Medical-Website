@@ -87,7 +87,7 @@ namespace MedicalPlatform.Controllers
             {
                 //var app = await _appointmentService.GetOne(id);
                 var result = await _appointmentService.SoftDelete(id);
-                return Ok("Appointment Deleted  successfully.");
+                return Ok(result);
             }
             catch (Exception ex)
             {

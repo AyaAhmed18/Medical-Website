@@ -103,7 +103,7 @@ namespace MedicalPlatform.Controllers
             {
                 var patient = await _reviewService.GetOne(id);
                 var result = await _reviewService.SoftDelete(patient);
-                return Ok("Review Deleted  successfully.");
+                return Ok(result);
             }
             catch (Exception ex)
             {

@@ -104,12 +104,12 @@ namespace MedicalWebsite.Context
             {
                 Id = "2",
                 UserName = "AsmaaGaberAdmin",
-                Email = "\"AsmaaGaber18@gmail.com",
+                Email = "AsmaaGaber18@gmail.com",
                 EmailConfirmed = true,
                 IsDeleted = false,
 
             };
-            AsmaaUser.PasswordHash = hasher.HashPassword(AsmaaUser, "AdminPassword123!");
+            AsmaaUser.PasswordHash = hasher.HashPassword(AsmaaUser, "AdminPassword123@#");
 
             var HebaUser = new User
             {

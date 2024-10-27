@@ -72,7 +72,9 @@ namespace MedicalWebsite.Applicationn.Service
 
         public async Task<ResultDataList<GetAllPatients>> GetAllPatientsPages(int items, int pagenumber)
         {
-            var Alldata = (await _patientReposatory.GetAllAsync());
+            var Alldata = (await _patientReposatory.GetAllAsync()).Where(c => (bool)!c.IsDeleted)
+                            .ToList(); ;
+
             if (Alldata == null)
             {
                 return new ResultDataList<GetAllPatients>
@@ -82,7 +84,7 @@ namespace MedicalWebsite.Applicationn.Service
 
                 };
             }
-            var userlist = await Alldata.Skip(items * (pagenumber - 1)).Take(items).Select(p => new GetAllPatients()
+            var userlist =  Alldata.Skip(items * (pagenumber - 1)).Take(items).Select(p => new GetAllPatients()
             {
                 Id=p.Id,
                 Adress = p.Adress,
@@ -92,18 +94,71 @@ namespace MedicalWebsite.Applicationn.Service
                 insurance= p.insurance,
                 Email=p.Email
 
-            }).ToListAsync();
-            //  var userDTOs = _mapper.Map<List<GetAllDoctors>>(userlist);
+            }).ToList();
 
-            return new ResultDataList<GetAllPatients>
+            //return new ResultDataList<GetAllPatients>
+            //{
+            //    Entities = userlist,
+            //    Count = userlist.Count(),
+            //    CurrentPage = pagenumber,
+            //    PageSize = items,
+            //};
+
+
+            var totalItems = Alldata.Count;
+            var totalPages = (int)Math.Ceiling((double)totalItems / items);
+
+            var resultDataList = new ResultDataList<GetAllPatients>
             {
                 Entities = userlist,
-                Count = userlist.Count(),
+                Count = totalItems,
+                TotalPages = totalPages,
                 CurrentPage = pagenumber,
                 PageSize = items
             };
+
+            return resultDataList;
         }
 
+        public async Task<ResultDataList<GetAllPatients>> GetBlockedPatients(int items, int pagenumber)
+        {
+            try
+            {
+                var blockedPatients = (await _patientReposatory.GetAllAsync())
+                                      .Where(p => p.IsDeleted)
+                                      .Select(p => new GetAllPatients
+                                      {
+                                          Id = p.Id,
+                                          Adress = p.Adress,
+                                          UserName = p.UserName,
+                                          Gender = p.Gender ? Gender.Male : Gender.Female,
+                                          Phone = p.Phone,
+                                          insurance = p.insurance,
+                                          Email = p.Email
+                                      })
+                                      .ToList();
+
+                return new ResultDataList<GetAllPatients>
+                {
+                    Entities = blockedPatients,
+                    Count = blockedPatients.Count,
+                    //IsSuccess = true,
+                    //Message = "Blocked patients retrieved successfully."
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResultDataList<GetAllPatients>
+                {
+                    Entities = null,
+                    Count = 0,
+                    //IsSuccess = false,
+                    //Message = ex.Message
+                };
+            }
+        }
+
+      
         public async Task<ResultView<CreatorUpdatePatient>> GetPatientById(string id)
         {
             try
@@ -123,6 +178,7 @@ namespace MedicalWebsite.Applicationn.Service
             }
         }
 
+      
         public async Task<ResultView<CreatorUpdatePatient>> HardDeletePatient(string id)
 
         {
@@ -130,18 +186,19 @@ namespace MedicalWebsite.Applicationn.Service
             {
                 var patient = await _patientReposatory.GetByIdAsync(id);
                 if (patient == null)
-                {
+                
                     return new ResultView<CreatorUpdatePatient> { Entity = null, IsSuccess = false, Message = "patient is not Found" };
 
-                }
-                else
-                {
-                    var oldpatient = _patientReposatory.DeleteAsync(patient);
-                    await _patientReposatory.SaveChangesAsync();
-                    var newpatientDto = _mapper.Map<CreatorUpdatePatient>(oldpatient);
-                    return new ResultView<CreatorUpdatePatient> { Entity = newpatientDto, IsSuccess = true, Message = "Deleted Successfully" };
+                await _patientReposatory.DeleteAsync(patient);
+                await _patientReposatory.SaveChangesAsync();
 
-                }
+                var deletedpatientDto = _mapper.Map<CreatorUpdatePatient>(patient);
+                return new ResultView<CreatorUpdatePatient>
+                {
+                    Entity = deletedpatientDto,
+                    IsSuccess = true,
+                    Message = "patient deleted successfully."
+                };
             }
             catch (Exception ex)
             {
@@ -165,12 +222,6 @@ namespace MedicalWebsite.Applicationn.Service
             return new ResultView<CreatorUpdatePatient>() { IsSuccess = true, Entity = null, Message = "Failed to Login" }; ;
         }
 
-        //public async Task<ResultView<RegisterDTO>> RegisterAsPatient(RegisterDTO PatientDto)
-        //{
-
-        //    var NewPatient = await _userService.Registration(PatientDto, "PATIENT");
-        //    return NewPatient;
-        //}
        
         public async Task<ResultView<CreatorUpdatePatient>> RegisterAsPatient(CreatorUpdatePatient account)
         {
@@ -196,7 +247,6 @@ namespace MedicalWebsite.Applicationn.Service
                     //};
                     var NewUser = new Patient
                     {
-                        //Id= account.Id,
                         Email = account.Email,
                         UserName = account.UserName,
                         PhoneNumber = account.Phone,  
@@ -204,7 +254,7 @@ namespace MedicalWebsite.Applicationn.Service
                         Adress = account.Adress,
                         Birthdate = account.BirthDate,
                         Gender = account.Gender == Gender.Female,
-                        //Gender = account.Gender ? Gender.Female : Gender.Male,
+                      //  Gender = account.Gender ? Gender.Female : Gender.Male,
                         insurance = account.insurance
                     };
 
@@ -301,127 +351,7 @@ namespace MedicalWebsite.Applicationn.Service
         }
     }
 
-        //public async Task<ResultView<CreatorUpdatePatient>> Create(CreatorUpdatePatient patient)
-        //{
-        //    var Query = (await _patientReposatory.GetAllAsync());
-        //    var Oldpatient = Query.Where(App => App.Id == patient.Id).FirstOrDefault();
-
-        //    if (Oldpatient != null)
-        //    {
-        //        return new ResultView<CreatorUpdatePatient> { Entity = null, IsSuccess = false, Message = "Already Exist" };
-        //    }
-        //    else
-        //    {
-        //        var thepatient = _mapper.Map<Patient>(patient);
-        //        var Newpatient = await _patientReposatory.CreateAsync(thepatient);
-        //        await _patientReposatory.SaveChangesAsync();
-        //        var patientDto = _mapper.Map<CreatorUpdatePatient>(Newpatient);
-        //        return new ResultView<CreatorUpdatePatient> { Entity = patientDto, IsSuccess = true, Message = "Created Successfully" };
-        //    }
-
-        //}
-
-        //public async Task<ResultDataList<GetAllPatients>> GetAllPagination(int items, int pagenumber)
-        //{
-        //    var AlldAta = (await _patientReposatory.GetAllAsync());
-        //    var activePatient = AlldAta.Where(p => p.IsDeleted == false);
-        //    var patients = activePatient
-        //        .Skip(items * (pagenumber - 1))
-        //        .Take(items)
-        //        .Select(p => new GetAllPatients()
-        //        {
-        //            Id = p.Id,
-        //            Name = p.UserName,
-        //            BirthDate = p.Birthdate,
-        //            phoneNumber = p.PhoneNumber,
-        //            Gender = p.Gender ? Gender.Male : Gender.Female,
-        //           // Gender = p.Gender.HasValue ? (p.Gender.Value ? Gender.Male : Gender.Female) : (Gender?)null
-
-
-        //        })
-        //        .ToList();
-
-        //    var totalItems = AlldAta.Count(c => c.IsDeleted == false);
-        //    var totalPages = (int)Math.Ceiling((double)totalItems / items);
-
-        //    var resultDataList = new ResultDataList<GetAllPatients>()
-        //    {
-        //        Entities = patients,
-        //        Count = totalItems,
-        //        TotalPages = totalPages,
-        //        CurrentPage = pagenumber,
-        //        PageSize = items
-
-        //    };
-
-
-        //    return resultDataList;
-        //}
-
-        //public async Task<GetAllPatients> GetOne(string ID)
-        //{
-        //    var onePatient = await _patientReposatory.GetByIdAsync(ID);
-        //    var Patient = _mapper.Map<GetAllPatients>(onePatient);
-        //    return Patient;
-        //}
-
-        //public async Task<int> SaveShanges()
-        //{
-        //    return await _patientReposatory.SaveChangesAsync();
-        //}
-
-        //public async Task<ResultView<GetAllPatients>> SoftDelete(GetAllPatients patient)
-        //{
-        //    try
-        //    {
-        //        var patientm = _mapper.Map<Patient>(patient);
-        //        var Oldpatient = (await _patientReposatory.GetAllAsync()).FirstOrDefault(p => p.Id == patient.Id);
-        //        Oldpatient.IsDeleted = true;
-        //        await _patientReposatory.SaveChangesAsync();
-        //        var patientDto = _mapper.Map<GetAllPatients>(Oldpatient);
-        //        return new ResultView<GetAllPatients> { Entity = patientDto, IsSuccess = true, Message = "Deleted Successfully" };
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new ResultView<GetAllPatients> { Entity = null, IsSuccess = false, Message = ex.Message };
-        //    }
-        //}
-
-        //public async Task<ResultView<CreatorUpdatePatient>> Update(CreatorUpdatePatient patient)
-        //{
-        //    // throw new NotImplementedException();
-        //    try
-        //    {
-        //        var Data = await _patientReposatory.GetByIdAsync(patient.Id);
-
-        //        if (Data == null)
-        //        {
-        //            return new ResultView<CreatorUpdatePatient> { Entity = null, IsSuccess = false, Message = "Appointment Not Found!" };
-
-        //        }
-        //        else
-        //        {
-        //            var patientt = _mapper.Map<Patient>(patient);
-        //            var patienttEdit = await _patientReposatory.UpdateAsync(patientt);
-        //            await _patientReposatory.SaveChangesAsync();
-        //            var paDto = _mapper.Map<CreatorUpdatePatient>(patienttEdit);
-
-        //            return new ResultView<CreatorUpdatePatient> { Entity = paDto, IsSuccess = true, Message = "Status Updated Successfully" };
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new ResultView<CreatorUpdatePatient>
-        //        {
-        //            Entity = null,
-        //            IsSuccess = false,
-        //            Message = $"Something went wrong: {ex.Message}"
-        //        };
-        //    }
-        //}
-
-
+       
 
     
 }
