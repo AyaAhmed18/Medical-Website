@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicalWebsite.DTOS.User;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MedicalWebsite.DTOS.Patients
 {
-    public class GetAllPatients
+    public class GetAllPatients : UserDTO
     {
         public String Id { get; set; }
         public string UserName { get; set; }

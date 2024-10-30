@@ -125,7 +125,7 @@ namespace MedicalWebsite.Applicationn.Service
             try
             {
                 var blockedPatients = (await _patientReposatory.GetAllAsync())
-                                      .Where(p => p.IsDeleted)
+                                      .Where(p => p.IsDeleted==true)
                                       .Select(p => new GetAllPatients
                                       {
                                           Id = p.Id,
