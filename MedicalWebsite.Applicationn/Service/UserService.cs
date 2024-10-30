@@ -159,8 +159,8 @@ namespace MedicalWebsite.Applicationn.Service
                     {
                         Email = account.Email,
                         UserName=account.UserName,
-                        PhoneNumber=account.Phone,
-                        Adress=account.Adress,
+                        PhoneNumber=account.PhoneNumber,
+                        Address=account.Address,
                         Gender=account.Gender,
                         Education=account.Education,
                         SpecializationId= account.SpecializationId,

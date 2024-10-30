@@ -24,7 +24,7 @@ namespace MedicalPlatform.Controllers
             _doctorService=doctorService;
             _logger = logger;
         }
-        [HttpGet("AllUsersPaging/{items}/{pageNumber}")]
+        [HttpGet("AllDoctorPages/{items}/{pageNumber}")]
        // [Authorize(Roles = "admin")]
         public async Task<IActionResult> AllDoctorPages(int items, int pageNumber = 1)
         {
@@ -76,8 +76,8 @@ namespace MedicalPlatform.Controllers
                 return BadRequest("InValid Data");
         }
 
-
-        [HttpDelete("Block/{id}")]
+      
+        [HttpPut("ApproveDoctor/{id}")]
         public async Task<IActionResult> Delete(CreatorUpdateDoctor DoctorDto)
         {
             var doctor = await _doctorService.GetDoctorById(DoctorDto.Id);
@@ -92,12 +92,12 @@ namespace MedicalPlatform.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Block(CreatorUpdateDoctor DoctorDto)
+        public async Task<IActionResult> ApproveDoctor(CreatorUpdateDoctor DoctorDto)
         {
             var doctor = await _doctorService.GetDoctorById(DoctorDto.Id);
             if (doctor != null)
             {
-                var deleteddoctor = await _doctorService.BlockDoctor(DoctorDto.Id);
+                var deleteddoctor = await _doctorService.ApproveDoctor(DoctorDto.Id);
                 if (deleteddoctor.IsSuccess)
                     return Ok(doctor);
                 else return BadRequest(deleteddoctor.Message);

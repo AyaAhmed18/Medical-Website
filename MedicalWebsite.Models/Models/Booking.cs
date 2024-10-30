@@ -9,7 +9,7 @@ namespace MedicalWebsite.Models.Models
     public class Booking:BaseEntity
     {
         public string? fees { get; set; }
-        public TimeOnly? watingTime { get; set; }
+        public TimeOnly? waitngTime { get; set; }
         public DayOfWeek? StartDay { get; set; }
         public DayOfWeek? EndDay { get; set; }
         public TimeOnly StartHour { get; set; }

@@ -27,7 +27,7 @@ namespace MedicalWebsite.Applicationn.Service
             _mapper = mapper;
             _userService = userService;
         }
-        public async Task<ResultView<CreatorUpdateDoctor>> BlockDoctor(string DoctorId)
+        public async Task<ResultView<CreatorUpdateDoctor>> ApproveDoctor(string DoctorId)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace MedicalWebsite.Applicationn.Service
                 }
                 else
                 {
-                    doctor.IsDeleted = true;
+                    doctor.IsDeleted = false;
                     await _doctorRepository.SaveChangesAsync();
 
                     var TopicDto = _mapper.Map<CreatorUpdateDoctor>(doctor);
@@ -97,12 +97,11 @@ namespace MedicalWebsite.Applicationn.Service
             }
             var userlist = await Alldata.Skip(items * (pagenumber - 1)).Take(items).Select(d=>new GetAllDoctors()
             {
-                Adress=d.Adress,
+                Address=d.Address,
                 Education=d.Education,
                 UserName=d.UserName,
                 Gender=d.Gender,
                 Image=d.Image,
-                Phone=d.Phone,
                 Specialization=d.Specialization.Title,
                 Title=d.Title,
 
