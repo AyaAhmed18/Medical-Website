@@ -14,5 +14,6 @@ namespace MedicalWebsite.DTOS.Review
         public int? Rating { get; set; }
         public int PatientID { get; set; }
         public int DoctorId { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

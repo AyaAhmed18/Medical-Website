@@ -54,7 +54,7 @@ namespace MedicalPlatform.Controllers
             try
             {
                 var review = await _reviewService.GetAllPagination(pageSize, pageNumber);
-                return Ok(review.Entities);
+                return Ok(review);
             }
             catch (Exception ex)
             {
@@ -68,7 +68,7 @@ namespace MedicalPlatform.Controllers
             try
             {
                 var review = await _reviewService.GetHighRate(pageSize, pageNumber);
-                return Ok(review.Entities);
+                return Ok(review);
             }
             catch (Exception ex)
             {
@@ -103,7 +103,7 @@ namespace MedicalPlatform.Controllers
             {
                 var patient = await _reviewService.GetOne(id);
                 var result = await _reviewService.SoftDelete(patient);
-                return Ok("Review Deleted  successfully.");
+                return Ok(result);
             }
             catch (Exception ex)
             {

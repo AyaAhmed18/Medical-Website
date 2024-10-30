@@ -25,6 +25,6 @@ namespace MedicalWebsite.DTOS.User {
         public string confirmPassword { get; set; }
         public IFormFile? Image { get; set; }
         public string? Education { get; set; }
-        public Guid SpecializationId { get; set; }
+        public Guid? SpecializationId { get; set; }
     }
 }

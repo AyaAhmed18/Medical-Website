@@ -11,13 +11,15 @@ namespace MedicalWebsite.DTOS.Patients
 {
     public class GetAllPatients
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string phoneNumber { get; set; }
-        
-        public DateTime? BirthDate { get; set; }
-        //public Gender? Gender { get; set; }
+        public String Id { get; set; }
+        public string UserName { get; set; }
+        public string? Adress { get; set; }
+        public bool? insurance { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public DateTime BirthDate { get; set; }
+        //public Gender Gender { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))]
-        public Gender? Gender { get; set; }
+        public Gender Gender { get; set; }
     }
 }
