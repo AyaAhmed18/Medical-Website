@@ -76,8 +76,8 @@ namespace MedicalPlatform.Controllers
                 return BadRequest("InValid Data");
         }
 
-      
-        [HttpPut("ApproveDoctor/{id}")]
+
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(CreatorUpdateDoctor DoctorDto)
         {
             var doctor = await _doctorService.GetDoctorById(DoctorDto.Id);
@@ -90,19 +90,15 @@ namespace MedicalPlatform.Controllers
             }
             return BadRequest("topic Not found");
         }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> ApproveDoctor(CreatorUpdateDoctor DoctorDto)
+      
+        [HttpPut("ApproveDoctor/{id}")]
+        public async Task<IActionResult> ApproveDoctor(string id)
         {
-            var doctor = await _doctorService.GetDoctorById(DoctorDto.Id);
-            if (doctor != null)
-            {
-                var deleteddoctor = await _doctorService.ApproveDoctor(DoctorDto.Id);
-                if (deleteddoctor.IsSuccess)
+           
+                var doctor = await _doctorService.ApproveDoctor(id);
+                if (doctor.IsSuccess)
                     return Ok(doctor);
-                else return BadRequest(deleteddoctor.Message);
-            }
-            return BadRequest("doctor Not found");
+                else return BadRequest(doctor.Message); 
         }
 
         [HttpPost("Register")]
@@ -150,6 +146,30 @@ namespace MedicalPlatform.Controllers
             }
 
             return BadRequest(result.Errors);
+        }
+
+
+        [HttpGet("AllDisApprovedDoctorPages/{items}/{pageNumber}")]
+        // [Authorize(Roles = "admin")]
+        public async Task<IActionResult> AllDisApprovedDoctorPages(int items, int pageNumber = 1)
+        {
+            try
+            {
+                var users = await _doctorService.GetAllDisApprovedDoctorsPages(items, pageNumber);
+                if (users.Count > 0)
+                {
+                    return Ok(users);
+                }
+                else
+                {
+                    return Problem(statusCode: 400, title: "Failed to get paginated users");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while getting paginated users");
+                return StatusCode(500, "An internal server error occurred");
+            }
         }
     }
 }

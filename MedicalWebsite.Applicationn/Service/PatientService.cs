@@ -87,7 +87,7 @@ namespace MedicalWebsite.Applicationn.Service
             var userlist =  Alldata.Skip(items * (pagenumber - 1)).Take(items).Select(p => new GetAllPatients()
             {
                 Id=p.Id,
-                Adress = p.Adress,
+                Address = p.Address,
                 UserName = p.UserName,
                 Gender = p.Gender ? Gender.Male : Gender.Female,
                 Phone = p.Phone,
@@ -129,7 +129,7 @@ namespace MedicalWebsite.Applicationn.Service
                                       .Select(p => new GetAllPatients
                                       {
                                           Id = p.Id,
-                                          Adress = p.Adress,
+                                          Address = p.Address,
                                           UserName = p.UserName,
                                           Gender = p.Gender ? Gender.Male : Gender.Female,
                                           Phone = p.Phone,
@@ -251,7 +251,7 @@ namespace MedicalWebsite.Applicationn.Service
                         UserName = account.UserName,
                         PhoneNumber = account.Phone,  
                         Phone = account.Phone,        
-                        Adress = account.Adress,
+                        Address = account.Address,
                         Birthdate = account.BirthDate,
                         Gender = account.Gender == Gender.Female,
                       //  Gender = account.Gender ? Gender.Female : Gender.Male,

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedicalWebsite.Applicationn.Contract
 {
-  public  interface  ISpicallizationRepository:IRepository<Specialization,int>
+  public  interface  ISpicallizationRepository:IRepository<Specialization,Guid>
     {
     }
 }

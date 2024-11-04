@@ -17,8 +17,8 @@ namespace MedicalWebsite.DTOS.Doctor
         public string? Image { get; set; }
         public Boolean Gender { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
-
+        // public string Password { get; set; }
+        public bool? IsDeleted { get; set; }
         public Guid SpecializationId { get; set; }
 
 

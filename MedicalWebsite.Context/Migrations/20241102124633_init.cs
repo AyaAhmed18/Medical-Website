@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MedicalWebsite.Context.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,12 +72,11 @@ namespace MedicalWebsite.Context.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Doctor_Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Education = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Doctor_Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Doctor_Gender = table.Column<bool>(type: "bit", nullable: true),
                     SpecializationId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -85,6 +84,7 @@ namespace MedicalWebsite.Context.Migrations
                     Gender = table.Column<bool>(type: "bit", nullable: true),
                     Birthdate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     insurance = table.Column<bool>(type: "bit", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -235,7 +235,7 @@ namespace MedicalWebsite.Context.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     fees = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    watingTime = table.Column<TimeOnly>(type: "time", nullable: true),
+                    waitngTime = table.Column<TimeOnly>(type: "time", nullable: true),
                     StartDay = table.Column<int>(type: "int", nullable: true),
                     EndDay = table.Column<int>(type: "int", nullable: true),
                     StartHour = table.Column<TimeOnly>(type: "time", nullable: false),
@@ -288,10 +288,9 @@ namespace MedicalWebsite.Context.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HelpfulVotes = table.Column<int>(type: "int", nullable: false),
                     DoctorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PatientId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdatedBy = table.Column<int>(type: "int", nullable: true),
@@ -324,9 +323,9 @@ namespace MedicalWebsite.Context.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedAt", "Discriminator", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UpdatedAt", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "57e12d79-1525-483b-b409-8a97fb40d53d", new DateTime(2024, 10, 2, 22, 33, 12, 253, DateTimeKind.Local).AddTicks(7301), "User", "AyaAhmed18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAEC0mfrKc7O+Ts7K1jNeMd3RueplasOak/bANJXJOY43U4JxyUWCydZQ5rcwaOop5GQ==", null, false, "27a2af2b-3194-4b8c-acd0-8ebc20286e30", false, new DateTime(2024, 10, 2, 22, 33, 12, 253, DateTimeKind.Local).AddTicks(7347), "AyaAhmedAdmin" },
-                    { "2", 0, "6bee19ed-ee64-4142-a3df-38230df53c68", new DateTime(2024, 10, 2, 22, 33, 12, 319, DateTimeKind.Local).AddTicks(4555), "User", "\"AsmaaGaber18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAEIuydS3BQ+KePnKtLd9EB7AevOu6hAidPqFAsMFFtb9akzn9Nus+WUQ5im2qc+pYGw==", null, false, "be913667-a92a-41cb-ba7f-27c0a08113cd", false, new DateTime(2024, 10, 2, 22, 33, 12, 319, DateTimeKind.Local).AddTicks(4600), "AsmaaGaberAdmin" },
-                    { "3", 0, "88849c66-5c12-4ea5-9fe9-698b44e4d8b9", new DateTime(2024, 10, 2, 22, 33, 12, 393, DateTimeKind.Local).AddTicks(8287), "User", "\"Heba18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAEGNo4ZKfwDopM2jLN9+iqT9nHYMszLJz6AeZDsYrYeyeDpQ1b2/Nb68mP13kxgJXZg==", null, false, "05cd6219-2736-4524-a5cb-f48fdc93dfb0", false, new DateTime(2024, 10, 2, 22, 33, 12, 393, DateTimeKind.Local).AddTicks(8339), "HebaAdmin" }
+                    { "1", 0, "a6256c51-45a9-46bc-84ba-ae3351f865d8", new DateTime(2024, 11, 2, 14, 46, 33, 285, DateTimeKind.Local).AddTicks(5755), "User", "AyaAhmed18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAECskYNVB9lJZ0byQCVGlI2iynutmAsBKy3xn5Lhae9xGfu45Sdpk61572gNij9UWpQ==", null, false, "9d2b4ea3-e00e-4514-b291-e9a42ae7e313", false, new DateTime(2024, 11, 2, 14, 46, 33, 285, DateTimeKind.Local).AddTicks(5767), "AyaAhmedAdmin" },
+                    { "2", 0, "d6627548-ab29-400f-b547-424f1bd83863", new DateTime(2024, 11, 2, 14, 46, 33, 352, DateTimeKind.Local).AddTicks(1217), "User", "AsmaaGaber18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAEI+xhGYdlvIU7fXri7GENdWu0cweU+MAC+T8gg1Jgw/YczSAbY/i30HvpP9bAPf6Rg==", null, false, "dfb13b1e-984e-47b2-ae91-f172208cd0f5", false, new DateTime(2024, 11, 2, 14, 46, 33, 352, DateTimeKind.Local).AddTicks(1233), "AsmaaGaberAdmin" },
+                    { "3", 0, "3bbb60c5-0a0e-495b-8459-c4a04944c65e", new DateTime(2024, 11, 2, 14, 46, 33, 436, DateTimeKind.Local).AddTicks(5925), "User", "\"Heba18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAELr4mH9o/8+7rdXAd9rGWh0/moEGOJMqvBS3A2zKgMuMW3PZtpBRbJdCa6Vs45AEtA==", null, false, "34bd8adf-4875-4f0f-9130-bbb74bae5617", false, new DateTime(2024, 11, 2, 14, 46, 33, 436, DateTimeKind.Local).AddTicks(5939), "HebaAdmin" }
                 });
 
             migrationBuilder.InsertData(

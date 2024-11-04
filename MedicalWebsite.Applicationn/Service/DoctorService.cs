@@ -43,7 +43,7 @@ namespace MedicalWebsite.Applicationn.Service
                     await _doctorRepository.SaveChangesAsync();
 
                     var TopicDto = _mapper.Map<CreatorUpdateDoctor>(doctor);
-                    return new ResultView<CreatorUpdateDoctor> { Entity = TopicDto, IsSuccess = true, Message = "Blocked " };
+                    return new ResultView<CreatorUpdateDoctor> { Entity = TopicDto, IsSuccess = true, Message = "Approved " };
 
                 }
             }
@@ -95,8 +95,9 @@ namespace MedicalWebsite.Applicationn.Service
                      
                 };
             }
-            var userlist = await Alldata.Skip(items * (pagenumber - 1)).Take(items).Select(d=>new GetAllDoctors()
+            var userlist = await Alldata.Where(d=>d.IsDeleted== false).Skip(items * (pagenumber - 1)).Take(items).Select(d=>new GetAllDoctors()
             {
+                Id=d.Id,
                 Address=d.Address,
                 Education=d.Education,
                 UserName=d.UserName,
@@ -202,5 +203,41 @@ namespace MedicalWebsite.Applicationn.Service
 
             }
         }
+
+
+
+        public async Task<ResultDataList<GetAllDoctors>> GetAllDisApprovedDoctorsPages(int items, int pagenumber)
+        {
+            var Alldata = (await _doctorRepository.GetAllAsync());//.ToList();
+            if (Alldata == null)
+            {
+                return new ResultDataList<GetAllDoctors>
+                {
+                    Entities = null,
+                    Count = 0
+
+                };
+            }
+            var userlist = await Alldata.Where(d => d.IsDeleted == true).Skip(items * (pagenumber - 1)).Take(items).Select(d => new GetAllDoctors()
+            {
+                Id = d.Id,
+                Address = d.Address,
+                Education = d.Education,
+                UserName = d.UserName,
+                Gender = d.Gender,  
+                Image = d.Image,
+                Specialization = d.Specialization.Title,
+                Title = d.Title,
+
+            }).ToListAsync();
+            //  var userDTOs = _mapper.Map<List<GetAllDoctors>>(userlist);
+
+            return new ResultDataList<GetAllDoctors>
+            {
+                Entities = userlist,
+                Count = userlist.Count()
+            };
+        }
+
     }
 }

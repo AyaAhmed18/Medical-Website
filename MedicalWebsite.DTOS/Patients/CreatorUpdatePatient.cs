@@ -22,7 +22,7 @@ namespace MedicalWebsite.DTOS.Patients
          //public String? Id { get; set; }
         [Required]
         public string UserName { get; set; }
-        public string? Adress { get; set; }
+        public string? Address { get; set; }
         public bool? insurance { get; set; }
         public string Phone { get; set; }
        

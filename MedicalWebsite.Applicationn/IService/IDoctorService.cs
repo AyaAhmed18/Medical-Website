@@ -20,6 +20,7 @@ namespace MedicalWebsite.Applicationn.IService
         Task<ResultView<CreatorUpdateDoctor>> GetDoctorById(string id);//
         Task<ResultView<CreatorUpdateDoctor>> HardDeleteDoctor(CreatorUpdateDoctor DoctorDto);
         Task<ResultView<CreatorUpdateDoctor>> ApproveDoctor(string DoctorId);
+        Task<ResultDataList<GetAllDoctors>> GetAllDisApprovedDoctorsPages(int items, int pagenumber);
         Task<ResultView<CreatorUpdateDoctor>> UpdateDoctor(CreatorUpdateDoctor DoctorDto);
         Task<IdentityResult> ConfirmEmailAsync(string userId, string token);
     }

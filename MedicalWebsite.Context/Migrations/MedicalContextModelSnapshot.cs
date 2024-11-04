@@ -144,7 +144,7 @@ namespace MedicalWebsite.Context.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("CreatedBy")
@@ -296,51 +296,51 @@ namespace MedicalWebsite.Context.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "eb82052d-0b7b-417a-b6a3-05cbf1eef195",
-                            CreatedAt = new DateTime(2024, 10, 25, 15, 41, 14, 229, DateTimeKind.Local).AddTicks(6315),
+                            ConcurrencyStamp = "a6256c51-45a9-46bc-84ba-ae3351f865d8",
+                            CreatedAt = new DateTime(2024, 11, 2, 14, 46, 33, 285, DateTimeKind.Local).AddTicks(5755),
                             Email = "AyaAhmed18@gmail.com",
                             EmailConfirmed = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEC0MmhiO+qR9hN0LpaYFmY+2yFa4maXWSTUTeByQZDxSRi1siyF2TqKIkHKlsOS6YQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECskYNVB9lJZ0byQCVGlI2iynutmAsBKy3xn5Lhae9xGfu45Sdpk61572gNij9UWpQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "aca25d78-af94-48f8-970f-d1074df03e6c",
+                            SecurityStamp = "9d2b4ea3-e00e-4514-b291-e9a42ae7e313",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 10, 25, 15, 41, 14, 229, DateTimeKind.Local).AddTicks(6328),
+                            UpdatedAt = new DateTime(2024, 11, 2, 14, 46, 33, 285, DateTimeKind.Local).AddTicks(5767),
                             UserName = "AyaAhmedAdmin"
                         },
                         new
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a2708b25-19d1-454f-b2e5-0091644b4cfe",
-                            CreatedAt = new DateTime(2024, 10, 25, 15, 41, 14, 296, DateTimeKind.Local).AddTicks(9395),
-                            Email = "\"AsmaaGaber18@gmail.com",
+                            ConcurrencyStamp = "d6627548-ab29-400f-b547-424f1bd83863",
+                            CreatedAt = new DateTime(2024, 11, 2, 14, 46, 33, 352, DateTimeKind.Local).AddTicks(1217),
+                            Email = "AsmaaGaber18@gmail.com",
                             EmailConfirmed = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEGgQTgrViAWEH7sG9u1bcE9uVsipQzCSsHAy6iaTTcgunmQLJBzg2xbIKUBMNPv6Iw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEI+xhGYdlvIU7fXri7GENdWu0cweU+MAC+T8gg1Jgw/YczSAbY/i30HvpP9bAPf6Rg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f499e709-8f50-4246-8078-5b7e56f8efe9",
+                            SecurityStamp = "dfb13b1e-984e-47b2-ae91-f172208cd0f5",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 10, 25, 15, 41, 14, 296, DateTimeKind.Local).AddTicks(9409),
+                            UpdatedAt = new DateTime(2024, 11, 2, 14, 46, 33, 352, DateTimeKind.Local).AddTicks(1233),
                             UserName = "AsmaaGaberAdmin"
                         },
                         new
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e2a5b48a-9643-4098-902c-e8ea921e4eeb",
-                            CreatedAt = new DateTime(2024, 10, 25, 15, 41, 14, 361, DateTimeKind.Local).AddTicks(9725),
+                            ConcurrencyStamp = "3bbb60c5-0a0e-495b-8459-c4a04944c65e",
+                            CreatedAt = new DateTime(2024, 11, 2, 14, 46, 33, 436, DateTimeKind.Local).AddTicks(5925),
                             Email = "\"Heba18@gmail.com",
                             EmailConfirmed = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEDH9TZ3DnApDN7LPhcmipKQXNM40zcFWbFhHgwGeqb8wkHSCS8GhspY9XXQ2ByaJvg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELr4mH9o/8+7rdXAd9rGWh0/moEGOJMqvBS3A2zKgMuMW3PZtpBRbJdCa6Vs45AEtA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "70a30459-6074-4406-981f-43c1d89bdcba",
+                            SecurityStamp = "34bd8adf-4875-4f0f-9130-bbb74bae5617",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 10, 25, 15, 41, 14, 361, DateTimeKind.Local).AddTicks(9739),
+                            UpdatedAt = new DateTime(2024, 11, 2, 14, 46, 33, 436, DateTimeKind.Local).AddTicks(5939),
                             UserName = "HebaAdmin"
                         });
                 });
@@ -529,6 +529,9 @@ namespace MedicalWebsite.Context.Migrations
 
                     b.ToTable("AspNetUsers", t =>
                         {
+                            t.Property("Address")
+                                .HasColumnName("Doctor_Address");
+
                             t.Property("Gender")
                                 .HasColumnName("Doctor_Gender");
                         });
@@ -539,6 +542,9 @@ namespace MedicalWebsite.Context.Migrations
             modelBuilder.Entity("MedicalWebsite.Models.Models.Patient", b =>
                 {
                     b.HasBaseType("MedicalWebsite.Models.Models.User");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("datetime2");

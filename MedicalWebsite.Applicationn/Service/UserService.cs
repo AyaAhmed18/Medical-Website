@@ -164,18 +164,19 @@ namespace MedicalWebsite.Applicationn.Service
                         Gender=account.Gender,
                         Education = account.Education,
                         SpecializationId = (Guid)account.SpecializationId,
-                        // EmailConfirmed = true
+                         EmailConfirmed = true,
+                         IsDeleted = true,
                     };
 
                     var result = await _userManager.CreateAsync(NewUser, account.password);
                     if (result.Succeeded) 
                     {
-                        var token = await _userManager.GenerateEmailConfirmationTokenAsync(NewUser);
-                        var confirmationLink = $"http://localhost:46580/api/Doctor/confirm-email?userId={NewUser.Id}&token={Uri.EscapeDataString(token)}";
+                       // var token = await _userManager.GenerateEmailConfirmationTokenAsync(NewUser);
+                        //var confirmationLink = $"http://localhost:46580/api/Doctor/confirm-email?userId={NewUser.Id}&token={Uri.EscapeDataString(token)}";
 
                         // Send the email
-                        await _emailSender.SendEmailAsync(NewUser.Email, "Confirm your email",
-                            $"Please confirm your email by clicking this link: <a href='{confirmationLink}'>Confirm Email</a>");
+                        //await _emailSender.SendEmailAsync(NewUser.Email, "Confirm your email",
+                          //  $"Please confirm your email by clicking this link: <a href='{confirmationLink}'>Confirm Email</a>");
 
                         await _userManager.AddToRoleAsync(NewUser, RoleName);
 
@@ -205,7 +206,7 @@ namespace MedicalWebsite.Applicationn.Service
                 };
 
             }
-            catch (Exception e) 
+                catch (Exception e) 
             {
                 return new ResultView<RegisterDTO>()
                 {
