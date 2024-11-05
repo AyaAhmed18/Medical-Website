@@ -23,13 +23,16 @@ namespace MedicalWebsite.Applicationn.Service
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailSender _emailSender;
         private IMapper _mapper;
-        public UserService( IUserRepository userRepository, IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, IEmailSender emailSender)
+        private readonly IImageService _imageSevice;
+        public UserService( IUserRepository userRepository, IMapper mapper, UserManager<User> userManager,
+            SignInManager<User> signInManager, IEmailSender emailSender, IImageService imageSevice)
         {
             _userRepository = userRepository;
             _signInManager = signInManager;
-           _emailSender= emailSender;
+            _emailSender = emailSender;
             _userManager = userManager;
             _mapper = mapper;
+            _imageSevice = imageSevice;
         }
         public Task<ResultView<BlockUserDTO>> BlockUser(BlockUserDTO blockUserDTO)
         {
@@ -162,6 +165,7 @@ namespace MedicalWebsite.Applicationn.Service
                         PhoneNumber=account.PhoneNumber,
                         Address=account.Address,
                         Gender=account.Gender,
+                        Image=account.Imagepath,
                         Education = account.Education,
                         SpecializationId = (Guid)account.SpecializationId,
                          EmailConfirmed = true,
@@ -171,6 +175,7 @@ namespace MedicalWebsite.Applicationn.Service
                     var result = await _userManager.CreateAsync(NewUser, account.password);
                     if (result.Succeeded) 
                     {
+                     var img=  await _imageSevice.UploadIamge(account.Imagepath, account.Image);
                        // var token = await _userManager.GenerateEmailConfirmationTokenAsync(NewUser);
                         //var confirmationLink = $"http://localhost:46580/api/Doctor/confirm-email?userId={NewUser.Id}&token={Uri.EscapeDataString(token)}";
 

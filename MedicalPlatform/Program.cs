@@ -39,11 +39,12 @@ var builder = WebApplication.CreateBuilder(args);
         })
             .AddEntityFrameworkStores<MedicalContext>().AddDefaultTokenProviders(); 
         builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddAutoMapper(typeof(ProfileAutoMapper));
-builder.Services.AddScoped<IDoctorService, DoctorService>();
+        builder.Services.AddAutoMapper(typeof(ProfileAutoMapper));
+        builder.Services.AddScoped<IDoctorService, DoctorService>();
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<ISpeciallizationService, SpecializationService>();
         builder.Services.AddScoped<IBookingService, BookingService>();
+        builder.Services.AddScoped<IImageService, ImageService>();
         builder.Services.AddScoped<IAppointmentService, AppointmentService>();
         builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
         builder.Services.AddScoped<IPatientService, PatientService>();
