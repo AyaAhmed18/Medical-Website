@@ -39,8 +39,8 @@ var builder = WebApplication.CreateBuilder(args);
         })
             .AddEntityFrameworkStores<MedicalContext>().AddDefaultTokenProviders(); 
         builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddAutoMapper(typeof(ProfileAutoMapper));
-builder.Services.AddScoped<IDoctorService, DoctorService>();
+        builder.Services.AddAutoMapper(typeof(ProfileAutoMapper));
+        builder.Services.AddScoped<IDoctorService, DoctorService>();
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<ISpeciallizationService, SpecializationService>();
         builder.Services.AddScoped<IBookingService, BookingService>();
@@ -51,8 +51,11 @@ builder.Services.AddScoped<IDoctorService, DoctorService>();
         builder.Services.AddScoped<IReviewService, ReviewService>();
         builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
+
+        builder.Services.AddScoped<IEmailSender, EmailService>();
+        builder.Services.AddScoped<EmailService>();
         builder.Services.AddControllers().AddJsonOptions(options =>
-        {
+                {
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
 
@@ -66,7 +69,7 @@ builder.Services.AddScoped<IDoctorService, DoctorService>();
 //builder.Services.Configure<MailSettings>
 //             (builder.Configuration.GetSection("MailSettings"));
 
-        builder.Services.Configure<IdentityOptions>(options =>
+builder.Services.Configure<IdentityOptions>(options =>
         {
             // Password settings
             options.Password.RequireDigit = true;
@@ -81,7 +84,8 @@ builder.Services.AddScoped<IDoctorService, DoctorService>();
 builder.Services.AddTransient<IEmailSender, EmailService>();
         builder.Services.AddSwaggerGen();
 
-        var app = builder.Build();
+
+var app = builder.Build();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

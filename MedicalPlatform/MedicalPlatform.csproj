@@ -22,4 +22,8 @@
     <ProjectReference Include="..\MedicalWebsite.Infrastructure\MedicalWebsite.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Hubs\" />
+  </ItemGroup>
+
 </Project>

@@ -18,6 +18,8 @@ namespace MedicalWebsite.DTOS.User
 
         [Required]
         public string password { get; set; }
+
+      //   public string? NewPassword { get; set; }
         public bool rememberMe { get; set; } = false;
 
     }
