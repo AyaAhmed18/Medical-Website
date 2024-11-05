@@ -8,7 +8,7 @@ namespace MedicalWebsite.DTOS.User {
     {
         [Required]
         public string UserName { get; set; }
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
         public Boolean Gender { get; set; }
       
         [Required(ErrorMessage = "Field can't be empty")]
@@ -16,7 +16,7 @@ namespace MedicalWebsite.DTOS.User {
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@gmail\.com$", ErrorMessage = "Only Gmail addresses are allowed.")]
         public string Email { get; set; }
         public DateTime Birthdate { get; set; }
-        public string? Adress { get; set; }
+        public string? Address { get; set; }
 
         [Required]
         public string password { get; set; }
@@ -24,7 +24,8 @@ namespace MedicalWebsite.DTOS.User {
           Display(Name = "Confirm password")]
         public string confirmPassword { get; set; }
         public IFormFile? Image { get; set; }
+        public string? Imagepath { get; set; }
         public string? Education { get; set; }
-        public Guid SpecializationId { get; set; }
+        public Guid? SpecializationId { get; set; }
     }
 }

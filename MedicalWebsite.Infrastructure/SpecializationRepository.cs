@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedicalWebsite.Infrastructure
 {
-    public class SpecializationRepository:Repository<Specialization,int>, ISpicallizationRepository
+    public class SpecializationRepository:Repository<Specialization,Guid>, ISpicallizationRepository
     {
         public SpecializationRepository(MedicalContext medicalContext) : base(medicalContext) { }
     }

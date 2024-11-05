@@ -72,7 +72,7 @@ namespace MedicalWebsite.Applicationn.Service
                     EndDay=c.EndDay,
                     StartHour=c.StartHour,
                     EndHour=c.EndHour,
-                    watingTime=c.watingTime
+                    waitngTime=c.waitngTime
 
                 }).ToList(); 
 

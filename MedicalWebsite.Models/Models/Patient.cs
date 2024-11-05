@@ -13,6 +13,7 @@ namespace MedicalWebsite.Models.Models
         public Boolean Gender { get; set; }
         public DateTime Birthdate { get; set; }
         public bool? insurance { get; set; }
+        public string? Address { get; set; }
         public virtual ICollection<Doctor>? Doctors { get; set; }
         public virtual ICollection<Appointment>? Appointments { get; set; }
         public virtual ICollection<Review>? Reviews { get; set; }

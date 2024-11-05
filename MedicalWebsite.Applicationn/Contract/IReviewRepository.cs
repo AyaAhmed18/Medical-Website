@@ -9,7 +9,7 @@ using MedicalWebsite.Models;
 
 namespace MedicalWebsite.Applicationn.Contract
 {
-    public interface IReviewRepository: IRepository<Review,int>
+    public interface IReviewRepository: IRepository<Review, Guid>
     {
     }
 }

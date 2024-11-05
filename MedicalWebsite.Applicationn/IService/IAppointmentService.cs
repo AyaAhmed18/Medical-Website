@@ -14,13 +14,13 @@ namespace MedicalWebsite.Applicationn.IService
         Task<ResultView<CreatorUpdateAppointment>> Create(CreatorUpdateAppointment Appointment);
 
 
-        Task<ResultView<CreatorUpdateAppointment>> SoftDelete(CreatorUpdateAppointment Appointment);
-        Task<ResultView<CreatorUpdateAppointment>> HardDelete(CreatorUpdateAppointment Appointment);
+        Task<ResultView<CreatorUpdateAppointment>> SoftDelete(Guid id);
+        Task<ResultView<CreatorUpdateAppointment>> HardDelete(Guid id);
 
         Task<ResultDataList<GetAllAppointement>> GetAllPagination(int items, int pagenumber);
         Task<CreatorUpdateAppointment> GetOne(Guid ID);
 
-        Task<ResultView<CreatorUpdateAppointment>> Update(CreatorUpdateAppointment Appointment);
+        Task<ResultView<CreatorUpdateAppointment>> Update(Guid id,CreatorUpdateAppointment Appointment);
 
 
         Task<int> SaveShanges();

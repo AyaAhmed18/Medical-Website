@@ -49,12 +49,12 @@ namespace MedicalPlatform.Controllers
         }
 
         [HttpGet("GettAllReviews")]
-        public async Task<IActionResult> GetAllReviews(int pageSize, int pageNumber)
+        public async Task<IActionResult> GetAllReviews(int pageSize, int pageNumber=1)
         {
             try
             {
                 var review = await _reviewService.GetAllPagination(pageSize, pageNumber);
-                return Ok(review.Entities);
+                return Ok(review);
             }
             catch (Exception ex)
             {
@@ -68,7 +68,7 @@ namespace MedicalPlatform.Controllers
             try
             {
                 var review = await _reviewService.GetHighRate(pageSize, pageNumber);
-                return Ok(review.Entities);
+                return Ok(review);
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace MedicalPlatform.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetReview(int id)
+        public async Task<IActionResult> GetReview(Guid id)
         {
             try
             {
@@ -97,13 +97,13 @@ namespace MedicalPlatform.Controllers
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletReview(int id)
+        public async Task<IActionResult> DeletReview(Guid id)
         {
             try
             {
                 var patient = await _reviewService.GetOne(id);
                 var result = await _reviewService.SoftDelete(patient);
-                return Ok("Review Deleted  successfully.");
+                return Ok(result);
             }
             catch (Exception ex)
             {

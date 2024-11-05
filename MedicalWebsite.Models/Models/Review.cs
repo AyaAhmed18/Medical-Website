@@ -20,5 +20,6 @@ namespace MedicalWebsite.Models.Models
 
         public string PatientId { get; set; }
         public Patient? Patient { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

@@ -17,7 +17,7 @@ namespace MedicalWebsite.Applicationn.IService
         Task<ResultDataList<GetAllReviewsDto>> GetAllPagination(int items, int pagenumber);
         Task<ResultDataList<GetAllReviewsDto>> GetHighRate(int items, int pagenumber);
 
-        Task<GetAllReviewsDto> GetOne(int ID);
+        Task<GetAllReviewsDto> GetOne(Guid ID);
         Task<ResultView<CreateUpdateReviews>> Update(CreateUpdateReviews review);
 
         Task<int> SaveShanges();

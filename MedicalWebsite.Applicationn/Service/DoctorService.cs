@@ -27,7 +27,7 @@ namespace MedicalWebsite.Applicationn.Service
             _mapper = mapper;
             _userService = userService;
         }
-        public async Task<ResultView<CreatorUpdateDoctor>> BlockDoctor(string DoctorId)
+        public async Task<ResultView<CreatorUpdateDoctor>> ApproveDoctor(string DoctorId)
         {
             try
             {
@@ -39,11 +39,11 @@ namespace MedicalWebsite.Applicationn.Service
                 }
                 else
                 {
-                    doctor.IsDeleted = true;
+                    doctor.IsDeleted = false;
                     await _doctorRepository.SaveChangesAsync();
 
                     var TopicDto = _mapper.Map<CreatorUpdateDoctor>(doctor);
-                    return new ResultView<CreatorUpdateDoctor> { Entity = TopicDto, IsSuccess = true, Message = "Blocked " };
+                    return new ResultView<CreatorUpdateDoctor> { Entity = TopicDto, IsSuccess = true, Message = "Approved " };
 
                 }
             }
@@ -95,14 +95,14 @@ namespace MedicalWebsite.Applicationn.Service
                      
                 };
             }
-            var userlist = await Alldata.Skip(items * (pagenumber - 1)).Take(items).Select(d=>new GetAllDoctors()
+            var userlist = await Alldata.Where(d=>d.IsDeleted== false).Skip(items * (pagenumber - 1)).Take(items).Select(d=>new GetAllDoctors()
             {
-                Adress=d.Adress,
+                Id=d.Id,
+                Address=d.Address,
                 Education=d.Education,
                 UserName=d.UserName,
                 Gender=d.Gender,
                 Image=d.Image,
-                Phone=d.Phone,
                 Specialization=d.Specialization.Title,
                 Title=d.Title,
 
@@ -203,5 +203,41 @@ namespace MedicalWebsite.Applicationn.Service
 
             }
         }
+
+
+
+        public async Task<ResultDataList<GetAllDoctors>> GetAllDisApprovedDoctorsPages(int items, int pagenumber)
+        {
+            var Alldata = (await _doctorRepository.GetAllAsync());//.ToList();
+            if (Alldata == null)
+            {
+                return new ResultDataList<GetAllDoctors>
+                {
+                    Entities = null,
+                    Count = 0
+
+                };
+            }
+            var userlist = await Alldata.Where(d => d.IsDeleted == true).Skip(items * (pagenumber - 1)).Take(items).Select(d => new GetAllDoctors()
+            {
+                Id = d.Id,
+                Address = d.Address,
+                Education = d.Education,
+                UserName = d.UserName,
+                Gender = d.Gender,  
+                Image = d.Image,
+                Specialization = d.Specialization.Title,
+                Title = d.Title,
+
+            }).ToListAsync();
+            //  var userDTOs = _mapper.Map<List<GetAllDoctors>>(userlist);
+
+            return new ResultDataList<GetAllDoctors>
+            {
+                Entities = userlist,
+                Count = userlist.Count()
+            };
+        }
+
     }
 }

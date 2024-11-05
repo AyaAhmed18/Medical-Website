@@ -13,9 +13,9 @@ namespace MedicalWebsite.Models.Models
     {
        // public string Name { get; set; }
         public string? Title { get; set; }
-        public string Phone { get; set; }  /// Delete
+       // public string Phone { get; set; }  /// Delete
         public string? Education { get; set; }
-       public string? Adress { get; set; }
+       public string? Address { get; set; }
         public string? Image { get; set; }
         public Boolean Gender { get; set; }
         public virtual ICollection<Patient>? Patients { get; set; }

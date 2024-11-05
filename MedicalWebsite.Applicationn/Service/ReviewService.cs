@@ -25,29 +25,63 @@ namespace MedicalWebsite.Applicationn.Service
             _mapper = mapper;
         }
 
+
+        public async Task<ResultView<CreateUpdateReviews>> Create(CreateUpdateReviews review)
+        {
+            try
+            {
+                var rev = _mapper.Map<Review>(review);
+                var Newrev = await _reviewRepository.CreateAsync(rev);
+                await _reviewRepository.SaveChangesAsync();
+                var ODto = _mapper.Map<CreateUpdateReviews>(Newrev);
+                return new ResultView<CreateUpdateReviews>
+                {
+                    Entity = ODto,
+                    IsSuccess = true,
+                    Message = "Review Created Successfully"
+                };
+
+
+            }
+            catch (Exception ex)
+            {
+                return new ResultView<CreateUpdateReviews>
+                {
+                    Entity = null,
+                    IsSuccess = false,
+                    Message = $"Something went wrong: {ex.Message}"
+                };
+            }
+        }
+
         public async Task<ResultDataList<GetAllReviewsDto>> GetAllPagination(int items, int pagenumber)
         {
             try
             {
-                var AlldAta = (await _reviewRepository.GetAllAsync());
-                var review = AlldAta.Skip(items * (pagenumber - 1)).Take(items)
-                                                  .Select(p => new GetAllReviewsDto()
-                                                  {
-                                                      Id = p.Id,
-                                                      Comment = p.Comment,
-                                                      Rate = p.Rating,
-                                                      DoctorName = p.Doctor.UserName,
-                                                      PatientName = p.Patient.UserName
+                var AlldAta = (await _reviewRepository.GetAllAsync())
+                     .Where(r => (bool)!r.IsDeleted)
+                     .ToList(); 
+
+                var reviews = AlldAta.Skip(items * (pagenumber - 1)).Take(items)
+                            .Select(p => new GetAllReviewsDto()
+                            {
+                                Id = p.Id,
+                                Comment = p.Comment,
+                                Rateing = p.Rating,
+                                DoctorName = p.Doctor?.UserName ?? "Unknown Doctor",  
+                                PatientName = p.Patient?.UserName ?? "Unknown Patient",
+                                CreatedAt=p.CreatedAt,
+
+                            })
+                            .ToList();
 
 
-                                                  }).ToList();
-
-                var totalItems = AlldAta.Count(c => c.IsDeleted != true);
+                var totalItems = AlldAta.Count;
                 var totalPages = (int)Math.Ceiling((double)totalItems / items);
 
                 var resultDataList = new ResultDataList<GetAllReviewsDto>
                 {
-                    Entities = review,
+                    Entities = reviews,
                     Count = totalItems,
                     TotalPages = totalPages,
                     CurrentPage = pagenumber,
@@ -67,20 +101,23 @@ namespace MedicalWebsite.Applicationn.Service
         {
             try
             {
-                var AlldAta = (await _reviewRepository.GetAllAsync()).Where(r => r.Rating >= 4);
+                var AlldAta = (await _reviewRepository.GetAllAsync()).Where(r => r.Rating >= 4)
+                     .Where(r => (bool)!r.IsDeleted)
+                     .ToList();
+
                 var review = AlldAta.Skip(items * (pagenumber - 1)).Take(items)
-                                                  .Select(p => new GetAllReviewsDto()
-                                                  {
-                                                      Id = p.Id,
-                                                      Comment = p.Comment,
-                                                      Rate = p.Rating,
-                                                      DoctorName = p.Doctor.UserName,
-                                                      PatientName = p.Patient.UserName
+                           .Select(p => new GetAllReviewsDto()
+                           {
+                               Id = p.Id,
+                               Comment = p.Comment,
+                               Rateing = p.Rating,
+                               DoctorName = p.Doctor?.UserName ?? "Unknown Doctor",
+                               PatientName = p.Patient?.UserName ?? "Unknown Patient",
+                               CreatedAt = p.CreatedAt,
+                           })
+                           .ToList();
 
-
-                                                  }).ToList();
-
-                var totalItems = AlldAta.Count(c => c.IsDeleted != true);
+                var totalItems = AlldAta.Count;
                 var totalPages = (int)Math.Ceiling((double)totalItems / items);
 
                 var resultDataList = new ResultDataList<GetAllReviewsDto>
@@ -130,45 +167,21 @@ namespace MedicalWebsite.Applicationn.Service
             throw new NotImplementedException();
         }
 
-        public async Task<GetAllReviewsDto> GetOne(int ID)
+        public async Task<GetAllReviewsDto> GetOne(Guid ID)
         {
             var onePatient = await _reviewRepository.GetByIdAsync(ID);
-            var Patient = _mapper.Map<GetAllReviewsDto>(onePatient);
+            var Patient =   new GetAllReviewsDto
+            {
+                Id = onePatient.Id,
+                Comment = onePatient.Comment,
+                Rateing = onePatient.Rating,
+                DoctorName = onePatient.Doctor?.UserName ?? "Unknown Doctor",
+                PatientName = onePatient.Patient?.UserName ?? "Unknown Patient",
+                CreatedAt = onePatient.CreatedAt,
+            };
+                //= _mapper.Map<GetAllReviewsDto>(onePatient);
             return Patient;
         }
-
-        public async Task<ResultView<CreateUpdateReviews>> Create(CreateUpdateReviews review)
-        {
-            try
-            {
-                var Data = (await _reviewRepository.GetAllAsync());
-                var Oldrev = Data.Where(c => c.Id == review.Id).FirstOrDefault();
-
-                if (Oldrev != null)
-                {
-                    return new ResultView<CreateUpdateReviews> { Entity = null, IsSuccess = false, Message = "review id!! Already Exist" };
-                }
-                else
-                {
-                    var rev = _mapper.Map<Review>(review);
-                    var Newrev = await _reviewRepository.CreateAsync(rev);
-                    await _reviewRepository.SaveChangesAsync();
-                    var ODto = _mapper.Map<CreateUpdateReviews>(Newrev);
-                    return new ResultView<CreateUpdateReviews> { Entity = ODto, IsSuccess = true, Message = "Order Created Successfully" };
-                }
-
-            }
-            catch (Exception ex)
-            {
-                return new ResultView<CreateUpdateReviews>
-                {
-                    Entity = null,
-                    IsSuccess = false,
-                    Message = $"Something went wrong: {ex.Message}"
-                };
-            }
-        }
-
 
         public async Task<int> SaveShanges()
         {
