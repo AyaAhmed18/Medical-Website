@@ -52,8 +52,11 @@ var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddScoped<IReviewService, ReviewService>();
         builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 
+
+        builder.Services.AddScoped<IEmailSender, EmailService>();
+        builder.Services.AddScoped<EmailService>();
         builder.Services.AddControllers().AddJsonOptions(options =>
-        {
+                {
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
 
@@ -67,7 +70,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.Configure<MailSettings>
 //             (builder.Configuration.GetSection("MailSettings"));
 
-        builder.Services.Configure<IdentityOptions>(options =>
+builder.Services.Configure<IdentityOptions>(options =>
         {
             // Password settings
             options.Password.RequireDigit = true;
@@ -82,7 +85,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<IEmailSender, EmailService>();
         builder.Services.AddSwaggerGen();
 
-        var app = builder.Build();
+
+var app = builder.Build();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

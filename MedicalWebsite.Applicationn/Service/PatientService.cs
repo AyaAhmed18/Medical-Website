@@ -253,8 +253,10 @@ namespace MedicalWebsite.Applicationn.Service
                         Phone = account.Phone,        
                         Address = account.Address,
                         Birthdate = account.BirthDate,
-                        Gender = account.Gender == Gender.Female,
-                      //  Gender = account.Gender ? Gender.Female : Gender.Male,
+                        // Gender = account.Gender == Gender.Female,
+                        Gender = account.Gender == Gender.Male,
+
+                        //  Gender = account.Gender ? Gender.Female : Gender.Male,
                         insurance = account.insurance
                     };
 
