@@ -21,12 +21,13 @@ namespace MedicalWebsite.Models.Models
         public virtual ICollection<Patient>? Patients { get; set; }
 
         public virtual ICollection<Review>? Reviews { get; set; }
-        // Foreign Keys
+       
+        public Booking Booking { get; set; }
         public Guid SpecializationId { get; set; }
         public Specialization Specialization { get; set; }
-        public Booking Booking { get; set; }
+        public virtual ICollection<Offers>? Offers { get; set; }
 
-
+        public virtual ICollection<Treatment>? Treatments { get; set; }
 
     }
 }

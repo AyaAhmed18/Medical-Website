@@ -554,11 +554,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
+      "projectUniqueName": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
       "projectName": "MedicalWebsite.DTOS",
-      "projectPath": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
+      "projectPath": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.DTOS\\obj\\",
+      "outputPath": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.DTOS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",

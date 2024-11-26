@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MedicalWebsite.Context.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class newdb11 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -77,7 +77,7 @@ namespace MedicalWebsite.Context.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Doctor_Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Education = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Doctor_Adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Doctor_Gender = table.Column<bool>(type: "bit", nullable: true),
                     SpecializationId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -85,6 +85,7 @@ namespace MedicalWebsite.Context.Migrations
                     Gender = table.Column<bool>(type: "bit", nullable: true),
                     Birthdate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     insurance = table.Column<bool>(type: "bit", nullable: true),
+                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -105,6 +106,30 @@ namespace MedicalWebsite.Context.Migrations
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_AspNetUsers_Specializations_SpecializationId",
+                        column: x => x.SpecializationId,
+                        principalTable: "Specializations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SubSpecialization",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SpecializationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubSpecialization", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SubSpecialization_Specializations_SpecializationId",
                         column: x => x.SpecializationId,
                         principalTable: "Specializations",
                         principalColumn: "Id",
@@ -282,16 +307,47 @@ namespace MedicalWebsite.Context.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Offer",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    SpecializationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DoctorId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Offer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Offer_AspNetUsers_DoctorId1",
+                        column: x => x.DoctorId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Offer_Specializations_SpecializationId",
+                        column: x => x.SpecializationId,
+                        principalTable: "Specializations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reviews",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HelpfulVotes = table.Column<int>(type: "int", nullable: false),
                     DoctorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PatientId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdatedBy = table.Column<int>(type: "int", nullable: true),
@@ -314,6 +370,41 @@ namespace MedicalWebsite.Context.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Treatment",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    NewPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SubSpecializationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DoctorId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Treatment", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Treatment_AspNetUsers_DoctorId1",
+                        column: x => x.DoctorId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Treatment_SubSpecialization_SubSpecializationId",
+                        column: x => x.SubSpecializationId,
+                        principalTable: "SubSpecialization",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -324,9 +415,9 @@ namespace MedicalWebsite.Context.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedAt", "Discriminator", "Email", "EmailConfirmed", "IsDeleted", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UpdatedAt", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "57e12d79-1525-483b-b409-8a97fb40d53d", new DateTime(2024, 10, 2, 22, 33, 12, 253, DateTimeKind.Local).AddTicks(7301), "User", "AyaAhmed18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAEC0mfrKc7O+Ts7K1jNeMd3RueplasOak/bANJXJOY43U4JxyUWCydZQ5rcwaOop5GQ==", null, false, "27a2af2b-3194-4b8c-acd0-8ebc20286e30", false, new DateTime(2024, 10, 2, 22, 33, 12, 253, DateTimeKind.Local).AddTicks(7347), "AyaAhmedAdmin" },
-                    { "2", 0, "6bee19ed-ee64-4142-a3df-38230df53c68", new DateTime(2024, 10, 2, 22, 33, 12, 319, DateTimeKind.Local).AddTicks(4555), "User", "\"AsmaaGaber18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAEIuydS3BQ+KePnKtLd9EB7AevOu6hAidPqFAsMFFtb9akzn9Nus+WUQ5im2qc+pYGw==", null, false, "be913667-a92a-41cb-ba7f-27c0a08113cd", false, new DateTime(2024, 10, 2, 22, 33, 12, 319, DateTimeKind.Local).AddTicks(4600), "AsmaaGaberAdmin" },
-                    { "3", 0, "88849c66-5c12-4ea5-9fe9-698b44e4d8b9", new DateTime(2024, 10, 2, 22, 33, 12, 393, DateTimeKind.Local).AddTicks(8287), "User", "\"Heba18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAEGNo4ZKfwDopM2jLN9+iqT9nHYMszLJz6AeZDsYrYeyeDpQ1b2/Nb68mP13kxgJXZg==", null, false, "05cd6219-2736-4524-a5cb-f48fdc93dfb0", false, new DateTime(2024, 10, 2, 22, 33, 12, 393, DateTimeKind.Local).AddTicks(8339), "HebaAdmin" }
+                    { "1", 0, "253ccb3f-9192-4874-802e-1e6514a21e65", new DateTime(2024, 11, 25, 3, 57, 0, 593, DateTimeKind.Local).AddTicks(5074), "User", "AyaAhmed18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAEES10g8iE3V/yivMZ0Ma+Nh8Fi3zuNjq+1oGXCB/NCAw43Mbx5j/kssUDI/rax6tzQ==", null, false, "5397a1aa-15e9-4a05-ac73-20347a2f8f11", false, new DateTime(2024, 11, 25, 3, 57, 0, 593, DateTimeKind.Local).AddTicks(5295), "AyaAhmedAdmin" },
+                    { "2", 0, "331f97a0-e945-43e6-b3a7-f9851a28cce2", new DateTime(2024, 11, 25, 3, 57, 0, 664, DateTimeKind.Local).AddTicks(7833), "User", "AsmaaGaber18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAELJTwVpF8Zab91QE7I46W9WnbHMj4KSRtpMaHzyY45M0CA2si3/znFegbAiz37Fhdg==", null, false, "ee32a138-e4a8-4ab3-b230-88311aa2d6fb", false, new DateTime(2024, 11, 25, 3, 57, 0, 664, DateTimeKind.Local).AddTicks(7909), "AsmaaGaberAdmin" },
+                    { "3", 0, "63b94754-b024-493a-bf30-4db48d2af9dd", new DateTime(2024, 11, 25, 3, 57, 0, 742, DateTimeKind.Local).AddTicks(2023), "User", "\"Heba18@gmail.com", true, false, false, null, null, null, "AQAAAAIAAYagAAAAEKUX8Q2I7TsjMz7/WCYwdz9Dz+URCrGtc5b5Z4wGqxoukHtbpuCX3Jf6LMkvnxGMaA==", null, false, "5d652c3c-30dd-4e0d-8cc9-98f7157bf6c9", false, new DateTime(2024, 11, 25, 3, 57, 0, 742, DateTimeKind.Local).AddTicks(2103), "HebaAdmin" }
                 });
 
             migrationBuilder.InsertData(
@@ -405,6 +496,17 @@ namespace MedicalWebsite.Context.Migrations
                 column: "PatientsId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Offer_DoctorId1",
+                table: "Offer",
+                column: "DoctorId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Offer_SpecializationId",
+                table: "Offer",
+                column: "SpecializationId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reviews_DoctorId",
                 table: "Reviews",
                 column: "DoctorId");
@@ -413,6 +515,21 @@ namespace MedicalWebsite.Context.Migrations
                 name: "IX_Reviews_PatientId",
                 table: "Reviews",
                 column: "PatientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubSpecialization_SpecializationId",
+                table: "SubSpecialization",
+                column: "SpecializationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Treatment_DoctorId1",
+                table: "Treatment",
+                column: "DoctorId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Treatment_SubSpecializationId",
+                table: "Treatment",
+                column: "SubSpecializationId");
         }
 
         /// <inheritdoc />
@@ -443,13 +560,22 @@ namespace MedicalWebsite.Context.Migrations
                 name: "DoctorPatient");
 
             migrationBuilder.DropTable(
+                name: "Offer");
+
+            migrationBuilder.DropTable(
                 name: "Reviews");
+
+            migrationBuilder.DropTable(
+                name: "Treatment");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "SubSpecialization");
 
             migrationBuilder.DropTable(
                 name: "Specializations");

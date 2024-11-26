@@ -7,6 +7,7 @@ using MedicalWebsite.Infrastructure;
 using MedicalWebsite.Models.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using System.Text.Json.Serialization;
 using Vezeeta.Application.Iservices;
 //using SendGrid.Helpers.Mail;
@@ -48,11 +49,17 @@ var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
         builder.Services.AddScoped<IPatientService, PatientService>();
         builder.Services.AddScoped<IpatientRepository, PatientRepository>();
-        builder.Services.AddScoped<IReviewService, ReviewService>();
+        builder.Services.AddScoped<IReviewService, OffersService>();
         builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+        builder.Services.AddScoped<IOffersService, OfeersService>();
+        builder.Services.AddScoped<IOffersRepository, OffersRepository>();
+        builder.Services.AddScoped<ITreatmentService, TreatmentService>();
+        builder.Services.AddScoped<ITreatmentRepository, TreatmentRepository>();
+        builder.Services.AddScoped<ISubSpecializationService, SubSpecializationService>();
+        builder.Services.AddScoped<ISubSpecializationRepository, SubSpecializationRepository>();
 
 
-        builder.Services.AddScoped<IEmailSender, EmailService>();
+builder.Services.AddScoped<IEmailSender, EmailService>();
         builder.Services.AddScoped<EmailService>();
         builder.Services.AddControllers().AddJsonOptions(options =>
                 {
@@ -85,6 +92,9 @@ builder.Services.AddTransient<IEmailSender, EmailService>();
         builder.Services.AddSwaggerGen();
 
 
+   
+
+
 var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -93,8 +103,14 @@ var app = builder.Build();
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "images")),
+            RequestPath = "/images"
+        });
 
-        app.UseCors("AllowAngularApp");
+
+app.UseCors("AllowAngularApp");
 
         app.UseAuthorization();
 

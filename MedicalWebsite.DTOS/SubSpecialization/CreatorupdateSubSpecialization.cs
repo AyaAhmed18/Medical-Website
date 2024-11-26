@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MedicalWebsite.DTOS.Specialization
 {
-    public class SpecializationDto
+    public class CreatorupdateSubSpecialization
     {
-        public string Title { get; set; }
+        public string Name { get; set; }
+        public Guid SpecializationId { get; set; }
     }
 }

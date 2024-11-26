@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ijo3v9jUM5wAk9S5EV2aYwH8BKs7h79ns80u6/vHTdA6i0x190TzqJ2JCt2fu8ZgRjBQRjtWgmdTauShTb9RGA==",
+  "dgSpecHash": "MHjHSsPEreV2nARd9tl0eOE/mY9rXllW1Vhot25KezdSUdZqVa/od9gS0Cf2lnJ9sZxcaL9mF07S++Mm6GsCPw==",
   "success": true,
-  "projectFilePath": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj",
+  "projectFilePath": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

@@ -17,8 +17,10 @@ namespace MedicalWebsite.Context
         public virtual DbSet<Appointment> Appointment { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Specialization> Specializations { get; set; }
+        public virtual DbSet<Offers> Offer { get; set; }
+        public virtual DbSet<Treatment> Treatment { get; set; }
+        public virtual DbSet<SubSpecialization> SubSpecialization { get; set; }
 
-       
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
             var entities = ChangeTracker.Entries<BaseEntity>();
@@ -77,7 +79,9 @@ namespace MedicalWebsite.Context
                 .HasOne(r => r.Patient)
                 .WithMany(p => p.Reviews)
                 .HasForeignKey(r => r.PatientId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
+
+              
 
             var adminRole = new IdentityRole
             {

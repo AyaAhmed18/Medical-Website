@@ -2,8 +2,11 @@
 using MedicalWebsite.DTOS.Appointment;
 using MedicalWebsite.DTOS.Booking;
 using MedicalWebsite.DTOS.Doctor;
+using MedicalWebsite.DTOS.Offers;
 using MedicalWebsite.DTOS.Patients;
 using MedicalWebsite.DTOS.Review;
+using MedicalWebsite.DTOS.Specialization;
+using MedicalWebsite.DTOS.Treatment;
 using MedicalWebsite.DTOS.User;
 using MedicalWebsite.Models.Models;
 using Microsoft.AspNetCore.Identity;
@@ -56,9 +59,17 @@ namespace MedicalWebsite.Applicationn.AutoMapper
             //CreateMap<RegisterDTO, CreatorUpdateDoctor>().ReverseMap();
             CreateMap<RegisterDTO, User>().ReverseMap();
 
+            CreateMap<GetAllOffers, Offers>().ReverseMap();
+            CreateMap<CreateUpdateOffers, Offers>().ReverseMap();
+            
+            CreateMap<CreatorupdateSpecializationDto, Specialization>().ReverseMap();
+            CreateMap<GetAllSpecializationDto, Specialization>().ReverseMap();
+            
+            CreateMap<CreatorupdateSubSpecialization, SubSpecialization>().ReverseMap();
+            CreateMap<GetAllSubSpecializationDto, SubSpecialization>().ReverseMap();
 
-
-
+            CreateMap<GetAllTreatment, Treatment>().ReverseMap();
+            CreateMap<CreateUpdateTreatment, Treatment>().ReverseMap();
 
         }
     }

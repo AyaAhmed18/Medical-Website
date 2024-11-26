@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalWebsite.Context.Migrations
 {
     [DbContext(typeof(MedicalContext))]
-    [Migration("20241002193312_initial")]
-    partial class initial
+    [Migration("20241125015701_newdb11")]
+    partial class newdb11
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,6 +138,53 @@ namespace MedicalWebsite.Context.Migrations
                     b.ToTable("Bookings");
                 });
 
+            modelBuilder.Entity("MedicalWebsite.Models.Models.Offers", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("DoctorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DoctorId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SpecializationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId1");
+
+                    b.HasIndex("SpecializationId")
+                        .IsUnique();
+
+                    b.ToTable("Offer");
+                });
+
             modelBuilder.Entity("MedicalWebsite.Models.Models.Review", b =>
                 {
                     b.Property<Guid>("Id")
@@ -147,7 +194,7 @@ namespace MedicalWebsite.Context.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("CreatedBy")
@@ -156,9 +203,6 @@ namespace MedicalWebsite.Context.Migrations
                     b.Property<string>("DoctorId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("HelpfulVotes")
-                        .HasColumnType("int");
 
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
@@ -213,6 +257,97 @@ namespace MedicalWebsite.Context.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Specializations");
+                });
+
+            modelBuilder.Entity("MedicalWebsite.Models.Models.SubSpecialization", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SpecializationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpecializationId");
+
+                    b.ToTable("SubSpecialization");
+                });
+
+            modelBuilder.Entity("MedicalWebsite.Models.Models.Treatment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("DoctorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DoctorId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("NewPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("SubSpecializationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId1");
+
+                    b.HasIndex("SubSpecializationId");
+
+                    b.ToTable("Treatment");
                 });
 
             modelBuilder.Entity("MedicalWebsite.Models.Models.User", b =>
@@ -302,51 +437,51 @@ namespace MedicalWebsite.Context.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "57e12d79-1525-483b-b409-8a97fb40d53d",
-                            CreatedAt = new DateTime(2024, 10, 2, 22, 33, 12, 253, DateTimeKind.Local).AddTicks(7301),
+                            ConcurrencyStamp = "253ccb3f-9192-4874-802e-1e6514a21e65",
+                            CreatedAt = new DateTime(2024, 11, 25, 3, 57, 0, 593, DateTimeKind.Local).AddTicks(5074),
                             Email = "AyaAhmed18@gmail.com",
                             EmailConfirmed = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEC0mfrKc7O+Ts7K1jNeMd3RueplasOak/bANJXJOY43U4JxyUWCydZQ5rcwaOop5GQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEES10g8iE3V/yivMZ0Ma+Nh8Fi3zuNjq+1oGXCB/NCAw43Mbx5j/kssUDI/rax6tzQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "27a2af2b-3194-4b8c-acd0-8ebc20286e30",
+                            SecurityStamp = "5397a1aa-15e9-4a05-ac73-20347a2f8f11",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 10, 2, 22, 33, 12, 253, DateTimeKind.Local).AddTicks(7347),
+                            UpdatedAt = new DateTime(2024, 11, 25, 3, 57, 0, 593, DateTimeKind.Local).AddTicks(5295),
                             UserName = "AyaAhmedAdmin"
                         },
                         new
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6bee19ed-ee64-4142-a3df-38230df53c68",
-                            CreatedAt = new DateTime(2024, 10, 2, 22, 33, 12, 319, DateTimeKind.Local).AddTicks(4555),
-                            Email = "\"AsmaaGaber18@gmail.com",
+                            ConcurrencyStamp = "331f97a0-e945-43e6-b3a7-f9851a28cce2",
+                            CreatedAt = new DateTime(2024, 11, 25, 3, 57, 0, 664, DateTimeKind.Local).AddTicks(7833),
+                            Email = "AsmaaGaber18@gmail.com",
                             EmailConfirmed = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEIuydS3BQ+KePnKtLd9EB7AevOu6hAidPqFAsMFFtb9akzn9Nus+WUQ5im2qc+pYGw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELJTwVpF8Zab91QE7I46W9WnbHMj4KSRtpMaHzyY45M0CA2si3/znFegbAiz37Fhdg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "be913667-a92a-41cb-ba7f-27c0a08113cd",
+                            SecurityStamp = "ee32a138-e4a8-4ab3-b230-88311aa2d6fb",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 10, 2, 22, 33, 12, 319, DateTimeKind.Local).AddTicks(4600),
+                            UpdatedAt = new DateTime(2024, 11, 25, 3, 57, 0, 664, DateTimeKind.Local).AddTicks(7909),
                             UserName = "AsmaaGaberAdmin"
                         },
                         new
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "88849c66-5c12-4ea5-9fe9-698b44e4d8b9",
-                            CreatedAt = new DateTime(2024, 10, 2, 22, 33, 12, 393, DateTimeKind.Local).AddTicks(8287),
+                            ConcurrencyStamp = "63b94754-b024-493a-bf30-4db48d2af9dd",
+                            CreatedAt = new DateTime(2024, 11, 25, 3, 57, 0, 742, DateTimeKind.Local).AddTicks(2023),
                             Email = "\"Heba18@gmail.com",
                             EmailConfirmed = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEGNo4ZKfwDopM2jLN9+iqT9nHYMszLJz6AeZDsYrYeyeDpQ1b2/Nb68mP13kxgJXZg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKUX8Q2I7TsjMz7/WCYwdz9Dz+URCrGtc5b5Z4wGqxoukHtbpuCX3Jf6LMkvnxGMaA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "05cd6219-2736-4524-a5cb-f48fdc93dfb0",
+                            SecurityStamp = "5d652c3c-30dd-4e0d-8cc9-98f7157bf6c9",
                             TwoFactorEnabled = false,
-                            UpdatedAt = new DateTime(2024, 10, 2, 22, 33, 12, 393, DateTimeKind.Local).AddTicks(8339),
+                            UpdatedAt = new DateTime(2024, 11, 25, 3, 57, 0, 742, DateTimeKind.Local).AddTicks(2103),
                             UserName = "HebaAdmin"
                         });
                 });
@@ -539,6 +674,9 @@ namespace MedicalWebsite.Context.Migrations
 
                     b.ToTable("AspNetUsers", t =>
                         {
+                            t.Property("Adress")
+                                .HasColumnName("Doctor_Adress");
+
                             t.Property("Gender")
                                 .HasColumnName("Doctor_Gender");
 
@@ -552,6 +690,9 @@ namespace MedicalWebsite.Context.Migrations
             modelBuilder.Entity("MedicalWebsite.Models.Models.Patient", b =>
                 {
                     b.HasBaseType("MedicalWebsite.Models.Models.User");
+
+                    b.Property<string>("Adress")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Birthdate")
                         .HasColumnType("datetime2");
@@ -614,6 +755,23 @@ namespace MedicalWebsite.Context.Migrations
                     b.Navigation("Doctor");
                 });
 
+            modelBuilder.Entity("MedicalWebsite.Models.Models.Offers", b =>
+                {
+                    b.HasOne("MedicalWebsite.Models.Models.Doctor", "Doctor")
+                        .WithMany("Offers")
+                        .HasForeignKey("DoctorId1");
+
+                    b.HasOne("MedicalWebsite.Models.Models.Specialization", "Specialization")
+                        .WithOne("Offer")
+                        .HasForeignKey("MedicalWebsite.Models.Models.Offers", "SpecializationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Specialization");
+                });
+
             modelBuilder.Entity("MedicalWebsite.Models.Models.Review", b =>
                 {
                     b.HasOne("MedicalWebsite.Models.Models.Doctor", "Doctor")
@@ -631,6 +789,34 @@ namespace MedicalWebsite.Context.Migrations
                     b.Navigation("Doctor");
 
                     b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("MedicalWebsite.Models.Models.SubSpecialization", b =>
+                {
+                    b.HasOne("MedicalWebsite.Models.Models.Specialization", "Specialization")
+                        .WithMany("SubSpecializations")
+                        .HasForeignKey("SpecializationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Specialization");
+                });
+
+            modelBuilder.Entity("MedicalWebsite.Models.Models.Treatment", b =>
+                {
+                    b.HasOne("MedicalWebsite.Models.Models.Doctor", "Doctor")
+                        .WithMany("Treatments")
+                        .HasForeignKey("DoctorId1");
+
+                    b.HasOne("MedicalWebsite.Models.Models.SubSpecialization", "SubSpecialization")
+                        .WithMany("Treatments")
+                        .HasForeignKey("SubSpecializationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("SubSpecialization");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -687,7 +873,7 @@ namespace MedicalWebsite.Context.Migrations
             modelBuilder.Entity("MedicalWebsite.Models.Models.Doctor", b =>
                 {
                     b.HasOne("MedicalWebsite.Models.Models.Specialization", "Specialization")
-                        .WithMany()
+                        .WithMany("Doctors")
                         .HasForeignKey("SpecializationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -695,12 +881,30 @@ namespace MedicalWebsite.Context.Migrations
                     b.Navigation("Specialization");
                 });
 
+            modelBuilder.Entity("MedicalWebsite.Models.Models.Specialization", b =>
+                {
+                    b.Navigation("Doctors");
+
+                    b.Navigation("Offer");
+
+                    b.Navigation("SubSpecializations");
+                });
+
+            modelBuilder.Entity("MedicalWebsite.Models.Models.SubSpecialization", b =>
+                {
+                    b.Navigation("Treatments");
+                });
+
             modelBuilder.Entity("MedicalWebsite.Models.Models.Doctor", b =>
                 {
                     b.Navigation("Booking")
                         .IsRequired();
 
+                    b.Navigation("Offers");
+
                     b.Navigation("Reviews");
+
+                    b.Navigation("Treatments");
                 });
 
             modelBuilder.Entity("MedicalWebsite.Models.Models.Patient", b =>

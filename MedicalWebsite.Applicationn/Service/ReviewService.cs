@@ -14,12 +14,12 @@ using MedicalWebsite.DTOS.Review;
 using MedicalWebsite.DTOS.Appointment;
 namespace MedicalWebsite.Applicationn.Service
 {
-    public class ReviewService : IReviewService
+    public class OffersService : IReviewService
 
     {
         private readonly IReviewRepository _reviewRepository;
         private readonly IMapper _mapper;
-        public ReviewService(IReviewRepository reviewRepository, IMapper mapper)
+        public OffersService(IReviewRepository reviewRepository, IMapper mapper)
         {
             _reviewRepository = reviewRepository;
             _mapper = mapper;

@@ -28,48 +28,6 @@ namespace MedicalWebsite.Applicationn.Service
             _mapper = mapper;
         }
 
-        //public async Task<ResultView<CreatorUpdateAppointment>> Create(CreatorUpdateAppointment appointment)
-        //{
-        //    try
-        //    {
-        //        var existingAppointment = (await _AppointmentReposatory.GetAllAsync())
-        //            .FirstOrDefault(p => p.Id == appointment.Id);
-
-        //        if (existingAppointment != null)
-        //        {
-        //            return new ResultView<CreatorUpdateAppointment>
-        //            {
-        //                Entity = null,
-        //                IsSuccess = false,
-        //                Message = "An appointment already exists for this doctor at the specified time."
-        //            };
-        //        }
-        //        var newAppointment = _mapper.Map<Appointment>(appointment);
-
-        //        var createdAppointment = await _AppointmentReposatory.CreateAsync(newAppointment);
-        //        await _AppointmentReposatory.SaveChangesAsync();
-
-        //        var createdAppointmentDto = _mapper.Map<CreatorUpdateAppointment>(createdAppointment);
-
-        //        return new ResultView<CreatorUpdateAppointment>
-        //        {
-        //            Entity = createdAppointmentDto,
-        //            IsSuccess = true,
-        //            Message = "Appointment created successfully."
-        //        };
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new ResultView<CreatorUpdateAppointment>
-        //        {
-        //            Entity = null,
-        //            IsSuccess = false,
-        //            Message = $"Something went wrong: {ex.Message}"
-        //        };
-        //    }
-        //}
-
-
         public async Task<ResultView<CreatorUpdateAppointment>> Create(CreatorUpdateAppointment appointment)
         {
             try
@@ -140,50 +98,6 @@ namespace MedicalWebsite.Applicationn.Service
             }
         }
 
-        //public async Task<ResultDataList<GetAllAppointement>> GetAllPagination(int items, int pagenumber)
-        //{
-        //    try
-        //    {
-        //        var AlldAta = (await _AppointmentReposatory.GetAllAsync());
-        //        var Appointments = AlldAta.Skip(items * (pagenumber - 1)).Take(items)
-
-        //                                          .Select(p => new GetAllAppointement()
-        //                                          {
-        //                                              Id = p.Id,
-        //                                              Time = p.BookngTime,
-        //                                              DoctorName = p.Doctor.UserName,
-        //                                              Status = p.Status,
-
-        //                                              Payment = p.payment.ToString()
-
-
-        //                                          }).ToList();
-
-        //        var totalItems = AlldAta.Count(c => c.IsDeleted != true);
-        //        var totalPages = (int)Math.Ceiling((double)totalItems / items);
-
-        //        var resultDataList = new ResultDataList<GetAllAppointement>
-        //        {
-        //            Entities = Appointments,
-        //            Count = totalItems,
-        //            TotalPages = totalPages,
-        //            CurrentPage = pagenumber,
-        //            PageSize = items,
-
-        //        };
-        //        return resultDataList;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"An error occurred: {ex.Message}");
-        //        throw;
-        //    }
-        //}
-
-
-        //test
-
-
         public async Task<CreatorUpdateAppointment> GetOne(Guid ID)
         {
             try
@@ -201,30 +115,6 @@ namespace MedicalWebsite.Applicationn.Service
                 throw;
             }
         }
-
-
-
-        //public async Task<ResultView<CreatorUpdateAppointment>> HardDelete(CreatorUpdateAppointment Appointment)
-        //{
-        //    try
-        //    {
-        //        var existingAppointment = await _AppointmentReposatory.GetByIdAsync(Appointment.Id);
-        //        if (existingAppointment == null)
-        //        {
-        //            return new ResultView<CreatorUpdateAppointment> { Entity = null, IsSuccess = false, Message = "Appointment not found" };
-        //        }
-        //        var OldAppointment = _AppointmentReposatory.DeleteAsync(existingAppointment);
-        //        await _AppointmentReposatory.SaveChangesAsync();
-
-        //        var bDto = _mapper.Map<CreatorUpdateAppointment>(OldAppointment);
-        //        return new ResultView<CreatorUpdateAppointment> { Entity = bDto, IsSuccess = true, Message = "Deleted Successfully" };
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new ResultView<CreatorUpdateAppointment> { Entity = null, IsSuccess = false, Message = ex.Message };
-
-        //    }
-        //}
 
 
         public async Task<ResultView<CreatorUpdateAppointment>> HardDelete(Guid id)
@@ -271,25 +161,6 @@ namespace MedicalWebsite.Applicationn.Service
             return await _AppointmentReposatory.SaveChangesAsync();
         }
 
-        //public async Task<ResultView<CreatorUpdateAppointment>> SoftDeleten(CreatorUpdateAppointment Appointment)
-        //{
-        //    try
-        //    {
-        //        var App = _mapper.Map<Appointment>(Appointment);
-        //        var OldApp = (await _AppointmentReposatory.GetAllAsync()).FirstOrDefault(p => p.Id == Guid.Parse(Appointment.Id.ToString()));
-
-        //        OldApp.IsDeleted = true;
-        //        await _AppointmentReposatory.SaveChangesAsync();
-        //        var AppDto = _mapper.Map<CreatorUpdateAppointment>(OldApp);
-        //        return new ResultView<CreatorUpdateAppointment> { Entity = AppDto, IsSuccess = true, Message = "Deleted Successfully" };
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new ResultView<CreatorUpdateAppointment> { Entity = null, IsSuccess = false, Message = ex.Message };
-
-        //    }
-        //}
-
         public async Task<ResultView<CreatorUpdateAppointment>> SoftDelete(Guid id)
         {
             try
@@ -328,42 +199,6 @@ namespace MedicalWebsite.Applicationn.Service
                 };
             }
         }
-
-
-        //public async Task<ResultView<CreatorUpdateAppointment>> Update(CreatorUpdateAppointment Appointment)
-        //{
-        //    try
-        //    {
-        //        var Data = await _AppointmentReposatory.GetByIdAsync(Appointment.Id);
-
-        //        if (Data == null)
-        //        {
-        //            return new ResultView<CreatorUpdateAppointment> { Entity = null, IsSuccess = false, Message = "Appointment Not Found!" };
-
-        //        }
-        //        else
-        //        {
-        //            var appointment = _mapper.Map<Appointment>(Appointment);
-        //            var appEdit = await _AppointmentReposatory.UpdateAsync(appointment);
-        //            await _AppointmentReposatory.SaveChangesAsync();
-        //            var appDto = _mapper.Map<CreatorUpdateAppointment>(appEdit);
-
-        //            return new ResultView<CreatorUpdateAppointment> { Entity = appDto, IsSuccess = true, Message = "Status Updated Successfully" };
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new ResultView<CreatorUpdateAppointment>
-        //        {
-        //            Entity = null,
-        //            IsSuccess = false,
-        //            Message = $"Something went wrong: {ex.Message}"
-        //        };
-        //        // Console.WriteLine($"An error occurred: {ex.Message}");
-        //        //throw;
-        //    }
-        //}
 
         public async Task<ResultView<CreatorUpdateAppointment>> Update(Guid id, CreatorUpdateAppointment appointmentDto)
         {

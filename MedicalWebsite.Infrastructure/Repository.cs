@@ -2,13 +2,14 @@
 using MedicalWebsite.Context;
 using MedicalWebsite.Models.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace MedicalWebsite.Infrastructure
 {
     public class Repository<TEntity, TID> : IRepository<TEntity, TID> where TEntity : class
     {
         private readonly MedicalContext _medicalContext;
-        private readonly DbSet<TEntity> _tEntity;
+        protected readonly DbSet<TEntity> _tEntity;
 
         public Repository(MedicalContext medicalContext)
         {
@@ -30,7 +31,10 @@ namespace MedicalWebsite.Infrastructure
 
         public  Task<IQueryable<TEntity>> GetAllAsync()
         {
-            return Task.FromResult( _tEntity.Select(e=>e));        }
+            return Task.FromResult( _tEntity.Select(e=>e));    
+            
+        }
+        
 
         public async Task<TEntity> GetByIdAsync(TID id)
         {

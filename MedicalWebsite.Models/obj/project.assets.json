@@ -564,11 +564,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
+      "projectUniqueName": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
       "projectName": "MedicalWebsite.Models",
-      "projectPath": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
+      "projectPath": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Models\\obj\\",
+      "outputPath": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",

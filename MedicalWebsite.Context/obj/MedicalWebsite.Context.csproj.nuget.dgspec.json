@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj": {}
+    "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj": {}
   },
   "projects": {
-    "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj": {
+    "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj",
+        "projectUniqueName": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj",
         "projectName": "MedicalWebsite.Context",
-        "projectPath": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj",
+        "projectPath": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Context\\MedicalWebsite.Context.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Context\\obj\\",
+        "outputPath": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Context\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {
-                "projectPath": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj"
+              "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {
+                "projectPath": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj"
               }
             }
           }
@@ -81,14 +81,14 @@
         }
       }
     },
-    "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {
+    "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
+        "projectUniqueName": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
         "projectName": "MedicalWebsite.Models",
-        "projectPath": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
+        "projectPath": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Models\\MedicalWebsite.Models.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.Models\\obj\\",
+        "outputPath": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",

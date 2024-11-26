@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tHY3rq2f0RLddc2l1WlIgR0E/oo/z/Cg1DgYlSkUO7pmc90eE3Qa9mgUSRBH9SyJbX3lhQusJrS7LIHFBSa0eQ==",
+  "dgSpecHash": "2DbY5vpa6/jRk/m6H6e6XklVbizcXNll77ZwcJ3Gh2y+39TgQ/mz3O6prtpb1G4srUosb457ZZ7kiFFnbZfNuA==",
   "success": true,
-  "projectFilePath": "E:\\Asmaa\\Asmaaa\\Medicalll\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
+  "projectFilePath": "E:\\Asmaa\\Asmaaa\\ourvezetaa\\back\\Medical-Website\\MedicalWebsite.DTOS\\MedicalWebsite.DTOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.8\\microsoft.aspnetcore.cryptography.internal.8.0.8.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.8\\microsoft.aspnetcore.cryptography.keyderivation.8.0.8.nupkg.sha512",
